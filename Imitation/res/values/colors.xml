@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- common color -->
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    
+    
+    <color name="TextColor">#FFFFFF</color>
+    <color name="bgColor">#000000</color>
+    
+    
+    <!-- friend activity layout -->
+    <color name="friend_listview_separated">#dadada</color>
+</resources>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost 
+    android:id="@android:id/tabhost" 
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <LinearLayout 
+        android:orientation="vertical" 
+        android:layout_width="fill_parent" 
+        android:layout_height="fill_parent">
+        
+        <FrameLayout 
+            android:id="@android:id/tabcontent" 
+            android:layout_width="fill_parent" 
+            android:layout_height="0.0dip" 
+            android:layout_weight="1.0" />
+        
+        <TabWidget 
+            android:id="@android:id/tabs" 
+            android:visibility="gone" 
+            android:layout_width="fill_parent" 
+            android:layout_height="wrap_content" 
+            android:layout_weight="0.0" />
+
+        <RadioGroup 
+		android:id="@+id/main_radiogroup"
+		android:gravity="center_vertical"
+		android:layout_gravity="bottom" 
+		android:orientation="horizontal"
+		android:paddingBottom="2dip"
+		android:paddingTop="8dp"
+		android:background="@drawable/mmfooter_bg"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content">
+			<RadioButton 
+			    android:id="@+id/main_tab_friend" 
+			    android:checked="true" 
+			    android:text="@string/strMyFriend" 
+			    android:drawableTop="@drawable/tab_friend"
+			    android:textColor="@color/tab_text"
+			    style="@style/MMTabButton" />	
+
+
+		 	<RadioButton 
+                android:id="@+id/main_tab_visitor" 
+                android:text="@string/strRecentVisitor" 
+                android:drawableTop="@drawable/tab_visitor" 
+                android:textColor="@color/tab_text"
+                style="@style/MMTabButton" />
+			
+		 	<RadioButton 
+		 	    android:id="@+id/main_tab_publish" 
+		 	    android:text="@string/strQuickPublish" 
+		 	    android:drawableTop="@drawable/tab_publish"
+		 	    android:textColor="@color/tab_text" 
+		 	    style="@style/MMTabButton" />
+		 	
+		 	
+		 	<RadioButton 
+		 	    android:id="@+id/main_tab_diary" 
+		 	    android:text="@string/strMyDiary" 
+		 	    android:drawableTop="@drawable/tab_diary" 
+		 	    android:textColor="@color/tab_text"
+		 	    style="@style/MMTabButton" />
+		 			 	
+		</RadioGroup>
+		
+            
+    </LinearLayout>
+    
+</TabHost>

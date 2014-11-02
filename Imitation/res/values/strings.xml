@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Imitation</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+
+    <!-- welcome activity -->
+    <string name="str_welcome_tv_text1">微信，不只是个聊天工具</string>
+    <string name="str_welcome_tv_text2">第一次，你可以使用透明背景的动画表情，来表达你此刻的心情</string>
+    <string name="str_welcome_tv_text3">开始我的微信生活</string>
+    <string name="str_welcome_iv_indicator_text">下面的多个点</string>
+    <string name="str_welcome_iv_whatsnew_text">进入页面时左右分开的imageview</string>
+
+    <!-- login activity -->
+    <string name="btnLogin">登录</string>
+    <string name="btnRegist">注册</string>
+    <string name="tvusername">用户名</string>
+    <string name="tvpassword">密码</string>
+    <string name="send">发送</string>
+    <string name="btnclose">关闭</string>
+    <string name="strRememberMe">记住我</string>
+    <string name="strExit">退出</string>
+
+    <!-- login service -->
+    <string name="url_login_loginIp">http://192.168.204.193:8080/Imitation/loginServlet</string>
+    
+    <!-- logout service -->
+    <string name="url_logout_logoutIp">http://192.168.204.193:8080/Imitation/logoutServlet</string>
+
+    <!-- register service -->
+    <string name="url_register_registerIp">http://192.168.204.193:8080/Imitation/registerServlet</string>
+
+    <!-- main function activity -->
+    <!-- "我的好友", "最近访客", "快速发布", "我的日志", "我的相册 -->
+    <string name="strMyFriend">我的好友</string>
+    <string name="strRecentVisitor">最近访客</string>
+    <string name="strQuickPublish">快速发布</string>
+    <string name="strMyDiary">我的日志</string>
+    <string name="strMyAlbum">我的相册</string>
+
+</resources>
