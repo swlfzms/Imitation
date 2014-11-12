@@ -22,8 +22,17 @@ public final class R {
         public static final int black=0x7f050001;
         /**  friend activity layout 
          */
-        public static final int friend_listview_separated=0x7f050004;
-        public static final int tab_text=0x7f050005;
+        public static final int friend_listview_separation=0x7f050004;
+        public static final int friend_listview_tv_content=0x7f050006;
+        public static final int friend_listview_tv_title=0x7f050005;
+        /**  publish activity layout 
+         */
+        public static final int publishlistDivider=0x7f050007;
+        public static final int publishlistTitle=0x7f050008;
+        /**  list seperate 
+         */
+        public static final int separation=0x7f050009;
+        public static final int tab_text=0x7f05000a;
         /**  common color 
          */
         public static final int white=0x7f050000;
@@ -40,84 +49,104 @@ public final class R {
     }
     public static final class drawable {
         public static final int app=0x7f020000;
-        public static final int bglogin=0x7f020001;
-        public static final int button_bg=0x7f020002;
-        public static final int chat=0x7f020003;
-        public static final int custom_loading=0x7f020004;
-        public static final int custom_progressbar=0x7f020005;
-        public static final int ic_launcher=0x7f020006;
-        public static final int loading=0x7f020007;
-        public static final int mm_trans=0x7f020008;
-        public static final int mmfooter_bg=0x7f020009;
-        public static final int page_indicator_bg=0x7f02000a;
-        public static final int page_indicator_focused=0x7f02000b;
-        public static final int page_indicator_unfocused=0x7f02000c;
-        public static final int tab_bg=0x7f02000d;
-        public static final int tab_bg_halo=0x7f02000e;
-        public static final int tab_diary=0x7f02000f;
-        public static final int tab_diary_normal=0x7f020010;
-        public static final int tab_diary_pressed=0x7f020011;
-        public static final int tab_friend=0x7f020012;
-        public static final int tab_friend_normal=0x7f020013;
-        public static final int tab_friend_pressed=0x7f020014;
-        public static final int tab_item_d=0x7f020015;
-        public static final int tab_publish=0x7f020016;
-        public static final int tab_publish_normal=0x7f020017;
-        public static final int tab_publish_pressed=0x7f020018;
-        public static final int tab_unread_bg=0x7f020019;
-        public static final int tab_visitor=0x7f02001a;
-        public static final int tab_visitor_normal=0x7f02001b;
-        public static final int tab_visitor_pressed=0x7f02001c;
-        public static final int w01=0x7f02001d;
-        public static final int w02=0x7f02001e;
-        public static final int w03=0x7f02001f;
-        public static final int w04=0x7f020020;
-        public static final int w05=0x7f020021;
-        public static final int w06=0x7f020022;
-        public static final int w07=0x7f020023;
-        public static final int w08=0x7f020024;
-        public static final int whatsnew_bg=0x7f020025;
-        public static final int whatsnew_btn_nor=0x7f020026;
-        public static final int whatsnew_btn_pressed=0x7f020027;
-        public static final int whatsnew_left=0x7f020028;
-        public static final int whatsnew_left_m=0x7f020029;
-        public static final int whatsnew_right=0x7f02002a;
-        public static final int whatsnew_right_m=0x7f02002b;
+        public static final int arrow_down=0x7f020001;
+        public static final int arrow_up=0x7f020002;
+        public static final int bglogin=0x7f020003;
+        public static final int button_bg=0x7f020004;
+        public static final int chat=0x7f020005;
+        public static final int custom_loading=0x7f020006;
+        public static final int custom_progressbar=0x7f020007;
+        public static final int ic_launcher=0x7f020008;
+        public static final int loading=0x7f020009;
+        public static final int mm_trans=0x7f02000a;
+        public static final int mmfooter_bg=0x7f02000b;
+        public static final int p_diary=0x7f02000c;
+        public static final int p_look=0x7f02000d;
+        public static final int p_search=0x7f02000e;
+        public static final int p_shoot=0x7f02000f;
+        public static final int p_signature=0x7f020010;
+        public static final int page_indicator_bg=0x7f020011;
+        public static final int page_indicator_focused=0x7f020012;
+        public static final int page_indicator_unfocused=0x7f020013;
+        public static final int pull_to_refresh_header_background=0x7f020014;
+        public static final int tab_bg=0x7f020015;
+        public static final int tab_bg_halo=0x7f020016;
+        public static final int tab_diary=0x7f020017;
+        public static final int tab_diary_normal=0x7f020018;
+        public static final int tab_diary_pressed=0x7f020019;
+        public static final int tab_friend=0x7f02001a;
+        public static final int tab_friend_normal=0x7f02001b;
+        public static final int tab_friend_pressed=0x7f02001c;
+        public static final int tab_item_d=0x7f02001d;
+        public static final int tab_publish=0x7f02001e;
+        public static final int tab_publish_normal=0x7f02001f;
+        public static final int tab_publish_pressed=0x7f020020;
+        public static final int tab_unread_bg=0x7f020021;
+        public static final int tab_visitor=0x7f020022;
+        public static final int tab_visitor_normal=0x7f020023;
+        public static final int tab_visitor_pressed=0x7f020024;
+        public static final int w01=0x7f020025;
+        public static final int w02=0x7f020026;
+        public static final int w03=0x7f020027;
+        public static final int w04=0x7f020028;
+        public static final int w05=0x7f020029;
+        public static final int w06=0x7f02002a;
+        public static final int w07=0x7f02002b;
+        public static final int w08=0x7f02002c;
+        public static final int whatsnew_bg=0x7f02002d;
+        public static final int whatsnew_btn_nor=0x7f02002e;
+        public static final int whatsnew_btn_pressed=0x7f02002f;
+        public static final int whatsnew_left=0x7f020030;
+        public static final int whatsnew_left_m=0x7f020031;
+        public static final int whatsnew_right=0x7f020032;
+        public static final int whatsnew_right_m=0x7f020033;
     }
     public static final class id {
+        public static final int LinearLayout1=0x7f0a0010;
         public static final int LinearLayout2=0x7f0a0002;
-        public static final int ScrollLayout=0x7f0a0019;
-        public static final int action_settings=0x7f0a0020;
-        public static final int animLayout=0x7f0a001d;
+        public static final int ScrollLayout=0x7f0a001b;
+        public static final int action_settings=0x7f0a002c;
+        public static final int animLayout=0x7f0a001f;
         public static final int btnExit=0x7f0a000a;
         public static final int btnLogin=0x7f0a0008;
         public static final int btnRegist=0x7f0a0009;
-        public static final int btnRegisterBack=0x7f0a0017;
-        public static final int btnRegisterOk=0x7f0a0016;
+        public static final int btnRegisterBack=0x7f0a0019;
+        public static final int btnRegisterOk=0x7f0a0018;
         public static final int cbremeber=0x7f0a0007;
         public static final int etPassword=0x7f0a0006;
-        public static final int etRegisterEmail=0x7f0a0015;
-        public static final int etRegisterName=0x7f0a0010;
-        public static final int etRegisterPass=0x7f0a0011;
-        public static final int etRegisterRePass=0x7f0a0013;
+        public static final int etRegisterEmail=0x7f0a0017;
+        public static final int etRegisterName=0x7f0a0012;
+        public static final int etRegisterPass=0x7f0a0013;
+        public static final int etRegisterRePass=0x7f0a0015;
         public static final int etUsername=0x7f0a0004;
-        public static final int leftLayout=0x7f0a001e;
+        public static final int head_arrowImageView=0x7f0a0023;
+        public static final int head_contentLayout=0x7f0a0022;
+        public static final int head_lastUpdatedTextView=0x7f0a0026;
+        public static final int head_progressBar=0x7f0a0024;
+        public static final int head_tipsTextView=0x7f0a0025;
+        public static final int imageView1=0x7f0a002b;
+        public static final int imageView_item=0x7f0a0027;
+        public static final int leftLayout=0x7f0a0020;
+        public static final int listView=0x7f0a002a;
         public static final int listfrienditem=0x7f0a0001;
-        public static final int llayout=0x7f0a001c;
-        public static final int mainRLayout=0x7f0a0018;
+        public static final int llayout=0x7f0a001e;
+        public static final int lvpublish=0x7f0a0011;
+        public static final int mainRLayout=0x7f0a001a;
         public static final int main_radiogroup=0x7f0a000b;
         public static final int main_tab_diary=0x7f0a000f;
         public static final int main_tab_friend=0x7f0a000c;
         public static final int main_tab_publish=0x7f0a000e;
         public static final int main_tab_visitor=0x7f0a000d;
-        public static final int rightLayout=0x7f0a001f;
+        public static final int rightLayout=0x7f0a0021;
         public static final int scrollView1=0x7f0a0000;
-        public static final int startBtn=0x7f0a001b;
-        public static final int t1=0x7f0a001a;
+        public static final int startBtn=0x7f0a001d;
+        public static final int t1=0x7f0a001c;
         public static final int textView1=0x7f0a0003;
         public static final int textView2=0x7f0a0005;
-        public static final int textView3=0x7f0a0012;
-        public static final int textView4=0x7f0a0014;
+        public static final int textView3=0x7f0a0014;
+        public static final int textView4=0x7f0a0016;
+        public static final int textView_content=0x7f0a0029;
+        public static final int textView_item=0x7f0a0028;
     }
     public static final class layout {
         public static final int activity_diary=0x7f030000;
@@ -129,6 +158,10 @@ public final class R {
         public static final int activity_register=0x7f030006;
         public static final int activity_visitor=0x7f030007;
         public static final int ativity_welcome=0x7f030008;
+        public static final int head=0x7f030009;
+        public static final int item=0x7f03000a;
+        public static final int mainlist=0x7f03000b;
+        public static final int test=0x7f03000c;
     }
     public static final class menu {
         public static final int main=0x7f090000;
@@ -141,17 +174,22 @@ public final class R {
         public static final int btnLogin=0x7f070008;
         public static final int btnRegist=0x7f070009;
         public static final int btnclose=0x7f07000d;
+        public static final int database_createtable_friendList=0x7f07001c;
+        public static final int database_name=0x7f07001b;
+        /**  database 
+         */
+        public static final int database_path=0x7f07001a;
         public static final int hello_world=0x7f070002;
         public static final int send=0x7f07000c;
         public static final int strExit=0x7f07000f;
-        public static final int strMyAlbum=0x7f070017;
-        public static final int strMyDiary=0x7f070016;
+        public static final int strMyAlbum=0x7f070019;
+        public static final int strMyDiary=0x7f070018;
         /**  main function activity 
  "我的好友", "最近访客", "快速发布", "我的日志", "我的相册 
          */
-        public static final int strMyFriend=0x7f070013;
-        public static final int strQuickPublish=0x7f070015;
-        public static final int strRecentVisitor=0x7f070014;
+        public static final int strMyFriend=0x7f070015;
+        public static final int strQuickPublish=0x7f070017;
+        public static final int strRecentVisitor=0x7f070016;
         public static final int strRememberMe=0x7f07000e;
         public static final int str_welcome_iv_indicator_text=0x7f070006;
         public static final int str_welcome_iv_whatsnew_text=0x7f070007;
@@ -168,6 +206,10 @@ public final class R {
         /**  logout service 
          */
         public static final int url_logout_logoutIp=0x7f070011;
+        public static final int url_publish_addfriendIp=0x7f070014;
+        /**  publish AsyncTask 
+         */
+        public static final int url_publish_signatureIp=0x7f070013;
         /**  register service 
          */
         public static final int url_register_registerIp=0x7f070012;

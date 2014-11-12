@@ -1,8 +1,8 @@
 package com.example.activity.main.function;
 
-import com.examle.activity.publish.PublishActivity;
 import com.example.activity.diary.DiaryActivity;
 import com.example.activity.friend.FriendActivity;
+import com.example.activity.publish.PublishActivity;
 import com.example.activity.visitor.VisitorActivity;
 
 

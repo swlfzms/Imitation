@@ -11,5 +11,17 @@
     
     
     <!-- friend activity layout -->
-    <color name="friend_listview_separated">#dadada</color>
+    <color name="friend_listview_separation">#dadada</color>    
+    <color name="friend_listview_tv_title">#353535</color>
+    <color name="friend_listview_tv_content">#aaaaaa</color>
+    
+    
+    <!-- publish activity layout -->
+    <color name="publishlistDivider">#ebebeb</color>
+    <color name="publishlistTitle">#353535</color>
+    
+    <!-- list seperate -->    
+    <color name="separation">#dadada</color>
+    
+    
 </resources>

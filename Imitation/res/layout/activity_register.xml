@@ -95,6 +95,7 @@
             android:layout_marginLeft="12dp"
             android:layout_weight="1"
             android:ems="10"
+            android:text="www@163.com"
             android:inputType="textEmailAddress"/>
 
     </LinearLayout>

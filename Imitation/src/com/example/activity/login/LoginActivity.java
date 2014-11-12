@@ -1,12 +1,23 @@
 package com.example.activity.login;
 
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
+
+import org.apache.http.conn.util.InetAddressUtils;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,6 +27,7 @@ import android.widget.Toast;
 import com.example.activity.main.function.MainFunctionActivity;
 import com.example.activity.register.RegisterActivity;
 import com.example.beans.LoginUser;
+import com.example.beans.Person;
 import com.example.imitation.R;
 import com.example.service.LoginService;
 
@@ -50,7 +62,7 @@ public class LoginActivity extends Activity {
 			
 			// 登录失败
 			case 0:
-				Toast.makeText(LoginActivity.this, loginMessage, Toast.LENGTH_SHORT).show();
+				Toast.makeText(LoginActivity.this, loginMessage, Toast.LENGTH_LONG).show();
 				progressDialog.cancel();
 				break;
 			
@@ -62,7 +74,7 @@ public class LoginActivity extends Activity {
 				mainFunctionActivityIntent.setClass(LoginActivity.this, MainFunctionActivity.class);
 				startActivity(mainFunctionActivityIntent);
 				
-				//清除当前的登录activity
+				// 清除当前的登录activity
 				LoginActivity.this.finish();
 				
 				progressDialog.cancel();
@@ -103,6 +115,8 @@ public class LoginActivity extends Activity {
 				return;
 			}
 			
+			Person.ip = getLocalIpAddress();
+			
 			// 显示循环进度圈
 			progressDialog = ProgressDialog.show(LoginActivity.this, "请稍候", "玩命加载中...", true, true);
 			progressDialog.setCanceledOnTouchOutside(true);
@@ -122,6 +136,31 @@ public class LoginActivity extends Activity {
 			 */
 		}
 	};
+	public String getLocalIpAddress()  
+    {  
+        try  
+        {  
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();)  
+            {  
+               NetworkInterface intf = en.nextElement();  
+               for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();)  
+               {  
+                   InetAddress inetAddress = enumIpAddr.nextElement();  
+					if (!inetAddress.isLoopbackAddress()
+							&& InetAddressUtils.isIPv4Address(inetAddress.getHostAddress()))  
+                   {  
+                       return inetAddress.getHostAddress().toString();  
+                   }  
+               }  
+           }  
+        }  
+        catch (SocketException ex)  
+        {  
+            Log.e("WifiPreference IpAddress", ex.toString());  
+        }  
+        return null;  
+    }  
+	
 	
 	// 注册
 	private final View.OnClickListener btnRegistListener = new View.OnClickListener() {
@@ -161,9 +200,8 @@ public class LoginActivity extends Activity {
 		
 		cb = (CheckBox) findViewById(R.id.cbremeber);
 		
-		
-		new Thread(new Runnable(){
-			public void run(){
+		new Thread(new Runnable() {
+			public void run() {
 				checkIfRemeber();
 			}
 		}).start();

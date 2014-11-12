@@ -16,7 +16,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:choiceMode="singleChoice"
-            android:divider="@color/friend_listview_separated"
+            android:divider="@color/friend_listview_separation"
             android:dividerHeight="1px" >
 
         </ListView>

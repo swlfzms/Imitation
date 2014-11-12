@@ -45,8 +45,16 @@ public class RegisterActivity extends Activity {
 			
 			// 注册成功
 			case 1:
-				Toast.makeText(RegisterActivity.this, registerMessage, Toast.LENGTH_SHORT).show();											
+				Toast.makeText(RegisterActivity.this, registerMessage, Toast.LENGTH_SHORT).show();
 				progressDialog.cancel();
+				
+				// 创建当前用户的朋友列表
+				String database_name = getResources().getString(R.string.database_name);
+				String path = RegisterActivity.this.getFilesDir().getPath() + database_name;
+				System.out.println(path);
+				CreateFriendListTable createFriendListTable = new CreateFriendListTable(RegisterUser.username, path);
+				createFriendListTable.start();
+				
 				break;
 			}
 		}

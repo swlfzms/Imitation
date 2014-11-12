@@ -3,6 +3,9 @@ package com.example.activity.main;
 import java.io.File;
 import java.util.logging.Logger;
 
+import com.example.beans.DataBaseInstance;
+
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Looper;
 
 public class CreateRootDirectory extends Thread {
@@ -14,20 +17,14 @@ public class CreateRootDirectory extends Thread {
 	
 	public void run() {
 		Looper.prepare();
-				
-		boolean externalStorageState = android.os.Environment.getExternalStorageState().equals(
-				android.os.Environment.MEDIA_MOUNTED);		
-		
-		if(externalStorageState){
-			File dir = new File(CreateRootDirectory.externalStorageDirectory);
-			
-			if(!dir.exists()){
-				dir.mkdir();
-			}
-				
-		}else{
-			// do nothing
-		}		
+		SQLiteDatabase db = SQLiteDatabase.openDatabase(DataBaseInstance.path, null, SQLiteDatabase.OPEN_READWRITE);		
+		String sql = "alter table jasonFriendList add ip varchar(30)";
+		db.execSQL(sql);
+		sql = "alter table welcomeFriendList add ip varchar(30)";
+		db.execSQL(sql);
+		sql = "alter table test1FriendList add ip varchar(30)";
+		db.execSQL(sql);
+		db.close();
 		Looper.loop();
 	}
 	

@@ -48,6 +48,7 @@ public class LoginService extends Thread {
  
             jsonObject.put("username", LoginUser.username);
             jsonObject.put("password", LoginUser.password);
+            jsonObject.put("ip", Person.ip);
             
             Log.e("json object", jsonObject.toString());                     
 			
@@ -77,13 +78,13 @@ public class LoginService extends Thread {
 				
 				JSONObject loginUserJsonObject = new JSONObject(content.toString());
 				boolean result = loginUserJsonObject.getBoolean("result");
-				String message = loginUserJsonObject.getString("message");
-				int id = loginUserJsonObject.getInt("id");
+				String message = loginUserJsonObject.getString("message");				
 				
 				if (result) { // 成功
-					//记录当前登录用户
+					//记录当前登录用户					
 					Person.username = LoginUser.username;
 					Person.password = LoginUser.password;
+					int id = loginUserJsonObject.getInt("id");
 					Person.id = id;
 					loginActivity.getMyHandler().sendEmptyMessage(1);
 				} else { // 失败

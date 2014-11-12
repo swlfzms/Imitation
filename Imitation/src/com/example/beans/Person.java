@@ -5,6 +5,7 @@ public class Person {
 	public static String username;
 	public static String password;
 	public static int id;
+	public static String ip;
 	
 	public static String getUsername() {
 		return username;
