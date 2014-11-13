@@ -6,6 +6,8 @@ import java.util.regex.Pattern;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -52,7 +54,9 @@ public class RegisterActivity extends Activity {
 				String database_name = getResources().getString(R.string.database_name);
 				String path = RegisterActivity.this.getFilesDir().getPath() + database_name;
 				System.out.println(path);
-				CreateFriendListTable createFriendListTable = new CreateFriendListTable(RegisterUser.username, path);
+				Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.headphoto0);				
+				 
+				CreateFriendListTable createFriendListTable = new CreateFriendListTable(RegisterUser.username, path, bitmap);
 				createFriendListTable.start();
 				
 				break;

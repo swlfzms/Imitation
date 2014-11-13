@@ -63,8 +63,7 @@ public class AddFriendToDatabase extends Thread {
 		Friend.friendStatus = friendStatus;
 		Friend.friendHeadphoto = friendHeadphoto;
 		
-		//this.getMyHandler().sendEmptyMessage(2);
-		//FriendActivity.this.getMyHandler().sendEmptyMessage(2);
+		Friend.dataChanged = true;
 		db.close();
 		Looper.loop();
 	}

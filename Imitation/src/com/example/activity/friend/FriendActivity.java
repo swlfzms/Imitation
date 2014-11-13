@@ -57,9 +57,14 @@ public class FriendActivity extends Activity {
 		setContentView(R.layout.mainlist);
 		databasepath = getResources().getString(R.string.database_path);
 		listView = (MyListView) findViewById(R.id.listView);
+		
+		//获取数据
 		FriendList friendList = new FriendList(databasepath);
 		friendList.setFriendActivity(this);
 		friendList.start();
+		//监控数据变化
+		DataChangeMonitor changeMonitor = new DataChangeMonitor(this);
+		changeMonitor.start();
 		
 		/*
 		 * data = new LinkedList<String>(); for (int i = 0; i < 10; i++) { data.add(String.valueOf(i) + ", 我的好友"); }
