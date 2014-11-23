@@ -175,22 +175,23 @@ public final class R {
         public static final int btnLogin=0x7f070008;
         public static final int btnRegist=0x7f070009;
         public static final int btnclose=0x7f07000d;
-        public static final int database_createtable_friendList=0x7f07001c;
-        public static final int database_name=0x7f07001b;
+        public static final int database_createtable_friendList=0x7f070020;
+        public static final int database_name=0x7f07001f;
+        public static final int database_path=0x7f07001e;
         /**  database 
          */
-        public static final int database_path=0x7f07001a;
+        public static final int database_prepath=0x7f07001d;
         public static final int hello_world=0x7f070002;
         public static final int send=0x7f07000c;
         public static final int strExit=0x7f07000f;
-        public static final int strMyAlbum=0x7f070019;
-        public static final int strMyDiary=0x7f070018;
+        public static final int strMyAlbum=0x7f07001c;
+        public static final int strMyDiary=0x7f07001b;
         /**  main function activity 
  "我的好友", "最近访客", "快速发布", "我的日志", "我的相册 
          */
-        public static final int strMyFriend=0x7f070015;
-        public static final int strQuickPublish=0x7f070017;
-        public static final int strRecentVisitor=0x7f070016;
+        public static final int strMyFriend=0x7f070018;
+        public static final int strQuickPublish=0x7f07001a;
+        public static final int strRecentVisitor=0x7f070019;
         public static final int strRememberMe=0x7f07000e;
         public static final int str_welcome_iv_indicator_text=0x7f070006;
         public static final int str_welcome_iv_whatsnew_text=0x7f070007;
@@ -208,6 +209,9 @@ public final class R {
          */
         public static final int url_logout_logoutIp=0x7f070011;
         public static final int url_publish_addfriendIp=0x7f070014;
+        public static final int url_publish_frienddata=0x7f070015;
+        public static final int url_publish_imagedownloadpath=0x7f070016;
+        public static final int url_publish_imageuploadpath=0x7f070017;
         /**  publish AsyncTask 
          */
         public static final int url_publish_signatureIp=0x7f070013;

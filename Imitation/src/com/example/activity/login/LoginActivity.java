@@ -69,7 +69,7 @@ public class LoginActivity extends Activity {
 			// 登录成功
 			case 1:
 				Toast.makeText(LoginActivity.this, loginMessage, Toast.LENGTH_SHORT).show();
-				
+				Toast.makeText(LoginActivity.this, "ip address: "+ Person.ip, Toast.LENGTH_LONG).show();
 				Intent mainFunctionActivityIntent = new Intent();
 				mainFunctionActivityIntent.setClass(LoginActivity.this, MainFunctionActivity.class);
 				startActivity(mainFunctionActivityIntent);
@@ -115,7 +115,7 @@ public class LoginActivity extends Activity {
 				return;
 			}
 			
-			Person.ip = getLocalIpAddress();
+			Person.ip = getLocalIpAddress();			
 			
 			// 显示循环进度圈
 			progressDialog = ProgressDialog.show(LoginActivity.this, "请稍候", "玩命加载中...", true, true);

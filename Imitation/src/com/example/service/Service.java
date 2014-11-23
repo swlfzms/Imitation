@@ -1,6 +1,7 @@
 package com.example.service;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 import org.apache.http.HttpResponse;
@@ -8,9 +9,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.example.beans.RegisterUser;
 
 public class Service {
 	
@@ -33,6 +33,7 @@ public class Service {
 			HttpClient httpClient = new DefaultHttpClient();
 			HttpResponse httpResponse = httpClient.execute(httpPost);
 			state = httpResponse.getStatusLine().getStatusCode();
+			System.out.println("连接状态： "+state);
 			
 			if (state == 200) {
 				
@@ -44,18 +45,22 @@ public class Service {
 					content.append(tmp);
 				}
 				bufferedReader.close();
-				System.out.println(content.toString());
+				System.out.println("收到的json内容："+content.toString());
 				
 				receiveObject = new JSONObject(content.toString());
 				return receiveObject;
 			}
-		} catch (Exception e) {
+		}catch(JSONException e){
+			e.printStackTrace();
 			try{
 				receiveObject.put("result", false);
 				receiveObject.put("message", "unknow error");
 			}catch(Exception ex){
 				ex.printStackTrace();
 			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return receiveObject;
 	}

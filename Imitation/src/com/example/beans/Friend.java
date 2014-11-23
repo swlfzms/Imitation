@@ -16,7 +16,15 @@ public class Friend implements Serializable {
 	public static String[] friendSignature;
 	public static int[] friendStatus;
 	public static Bitmap[] friendHeadphoto;
-	public static boolean dataChanged  = false;
+	
+	public static int[] friendheadphotoversion;
+	public static int[] friendsignatureversion;
+	//public static String[] friendIp;
+	
+	public static String imageDownLoadPath;
+	
+	public static boolean addFriend  = false;
+	public static boolean dataChanged = false;
 	
 	public Friend(){
 		

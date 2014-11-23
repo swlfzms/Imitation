@@ -100,4 +100,11 @@ public class MainFunctionActivity extends TabActivity {
 		}
 		return super.dispatchKeyEvent(event);
 	}
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub		
+		LogoutService logoutService = new LogoutService();
+			logoutService.start();
+		super.onStop();
+	}
 }

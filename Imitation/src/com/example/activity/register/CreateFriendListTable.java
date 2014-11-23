@@ -26,7 +26,7 @@ public class CreateFriendListTable extends Thread {
 		Looper.prepare();
 		SQLiteDatabase db = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
 		createTableSQL = "create table if not exists " + username
-				+ "FriendList(uid integer primary key, username text, signature text, status integer)";
+				+ "FriendList(uid integer primary key, username text, signature text, status integer default 0, ip text, headphotoversion integer default 0, signatureversion integer default 0)";
 		System.out.println(createTableSQL);
 		try {
 			db.execSQL(createTableSQL);
@@ -52,7 +52,7 @@ public class CreateFriendListTable extends Thread {
 				dir1.mkdirs();
 			}
 			// head photo path
-			selfStorageDirectory += "/headphoto.png";
+			selfStorageDirectory += "/headphoto0.png";
 			System.out.println(selfStorageDirectory);
 			File file = new File(selfStorageDirectory);
 			try {

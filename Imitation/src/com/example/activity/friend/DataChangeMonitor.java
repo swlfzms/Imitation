@@ -14,11 +14,16 @@ public class DataChangeMonitor extends Thread{
 	public void run(){
 		
 		while(true){
-			//更改数据
-			if(Friend.dataChanged){				
+			//addfriend
+			if(Friend.addFriend){				
 				this.friendActivity.getMyHandler().sendEmptyMessage(2);
-				Friend.dataChanged = false;
+				Friend.addFriend = false;
 			}
+			/*//datachanged
+			if(Friend.dataChanged){
+				this.friendActivity.getMyHandler().sendEmptyMessage(3);
+				Friend.dataChanged = false;
+			}*/
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {

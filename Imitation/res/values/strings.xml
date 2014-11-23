@@ -34,6 +34,9 @@
     <!-- publish AsyncTask -->
     <string name="url_publish_signatureIp">http://192.168.204.193:8080/Imitation/publishSignatureServlet</string>
     <string name="url_publish_addfriendIp">http://192.168.204.193:8080/Imitation/publishAddFriendServlet</string>
+    <string name="url_publish_frienddata">http://192.168.204.193:8080/Imitation/publishFriendDataServlet</string>
+    <string name="url_publish_imagedownloadpath">http://192.168.204.193:8080/Imitation/headphoto/</string>
+    <string name="url_publish_imageuploadpath">http://192.168.204.193:8080/Imitation/publishHeadPhotoServlet</string>
     
     <!-- main function activity -->
     <!-- "我的好友", "最近访客", "快速发布", "我的日志", "我的相册 -->
@@ -44,7 +47,11 @@
     <string name="strMyAlbum">我的相册</string>
 
     <!-- database -->
+    <string name="database_prepath">/data/data/com.example.imitation/files</string>
     <string name="database_path">/data/data/com.example.imitation/files/imitation.db</string>
     <string name="database_name">/imitation.db</string>
-    <string name="database_createtable_friendList">create table ?(uid integer primary key, username text, password text, status integer)</string>    
+    <string name="database_createtable_friendList">create table ?(uid integer primary key, username text, password text, status integer)</string>
+    
+    
+    
 </resources>

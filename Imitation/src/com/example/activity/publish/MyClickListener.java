@@ -1,8 +1,16 @@
 package com.example.activity.publish;
 
+import java.io.FileNotFoundException;
+
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -25,10 +33,10 @@ public class MyClickListener implements OnItemClickListener{
 	public void onItemClick(AdapterView<?> adapter, View view, int position,
 			long arg3) {
 		// TODO Auto-generated method stub
-		switch(position){
+		switch(position){//看看别人
 		case 0:
 			break;
-		case 1:
+		case 1://发表签名
 			final EditText etSignature = new EditText(publishActivity);				
 			//Toast.makeText(PublishActivity.this, "click me", Toast.LENGTH_SHORT).show();
 			new AlertDialog.Builder(publishActivity).setTitle("更新状态")
@@ -49,7 +57,7 @@ public class MyClickListener implements OnItemClickListener{
 				}
 			}).show();
 			break;
-		case 2:
+		case 2://查找好友
 			final EditText etFriendName = new EditText(publishActivity);				
 			//Toast.makeText(PublishActivity.this, "click me", Toast.LENGTH_SHORT).show();
 			new AlertDialog.Builder(publishActivity).setTitle("随便找找")
@@ -69,18 +77,17 @@ public class MyClickListener implements OnItemClickListener{
 					// TODO Auto-generated method stub					
 				}
 			}).show();
-		case 3:
-			/*Intent inte = new Intent();
+		case 3://更换头像
+			Intent inte = new Intent();
 			inte.setType("image/*");
-			 使用Intent.ACTION_GET_CONTENT这个Action 
+			//使用Intent.ACTION_GET_CONTENT这个Action 
 			inte.setAction(Intent.ACTION_GET_CONTENT);
-			 取得相片后返回本画面 
-			startActivityForResult(inte, 1);*/
+			 //取得相片后返回本画面 
+			publishActivity.startActivityForResult(inte, 1);
 			break;
 		default:				
 			break;
 		}
-	}
-	
+	}	
 
 }
