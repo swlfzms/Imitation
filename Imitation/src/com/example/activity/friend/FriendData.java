@@ -22,12 +22,13 @@ import android.os.Looper;
 import com.example.beans.DataBaseInstance;
 import com.example.beans.Friend;
 import com.example.beans.Person;
+import com.example.beans.Publish;
 import com.example.service.Service;
 
 public class FriendData extends Thread {
 	
 	private String path;
-	private String tableName = Person.username + "FriendList";
+	private String tableName = Person.username + Publish.friendList;
 	
 	public FriendData(String path) {
 		this.path = path;
@@ -43,8 +44,8 @@ public class FriendData extends Thread {
 	 * @see java.lang.Thread#run()
 	 */
 	@Override
-	public void run() {		
-		JSONObject sendObject = new JSONObject();		
+	public void run() {
+		JSONObject sendObject = new JSONObject();
 		try {
 			
 			JSONArray uidJsonArray = new JSONArray();
@@ -69,57 +70,53 @@ public class FriendData extends Thread {
 			Service service = new Service(sendObject, path);
 			JSONObject receiveObject = service.getResult();
 			
-			
 			JSONArray changedSignatureId = (JSONArray) receiveObject.get("changedSignatureId");
 			JSONArray changedSignatureContent = (JSONArray) receiveObject.get("changedSignatureContent");
 			JSONArray changedHeadphotoId = (JSONArray) receiveObject.get("changedHeadphotoId");
 			JSONArray changedphototype = (JSONArray) receiveObject.get("changedphototype");
 			System.out.println("接收内容：" + changedSignatureId + " " + changedHeadphotoId);
 			
-			
-			SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(DataBaseInstance.path, null);
+			SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(DataBaseInstance.fullPath, null);
 			String sql = "";
 			for (int i = 0; i < changedSignatureId.length(); i++) {
-				System.out.println("开始更新"+Friend.friendUsername[changedSignatureId.getInt(i)]+"的签名");
+				System.out.println("开始更新" + Friend.friendUsername[changedSignatureId.getInt(i)] + "的签名");
 				Friend.friendSignature[changedSignatureId.getInt(i)] = changedSignatureContent
 						.getString(changedSignatureId.getInt(i));
 				
 				sql = "update " + tableName + " set signatureversion="
-						+ (Friend.friendsignatureversion[changedSignatureId.getInt(i)] + 1) + " where uid="
+						+ (Friend.friendsignatureversion[changedSignatureId.getInt(i)] + 1) + ",signature='"
+						+ Friend.friendSignature[changedSignatureId.getInt(i)] + "' where uid="
 						+ Friend.friendUid[changedSignatureId.getInt(i)] + ";";
 				db.execSQL(sql);
-				System.out.println(Friend.friendUsername[changedSignatureId.getInt(i)]+"的签名更新完毕");
+				System.out.println(Friend.friendUsername[changedSignatureId.getInt(i)] + "的签名更新完毕");
 			}
-			/*// 修改签名
-			if(changedSignatureId.length()>0){
-				Friend.dataChanged = true;
-			}	*/		
-			
+			/*
+			 * // 修改签名 if(changedSignatureId.length()>0){ Friend.dataChanged = true; }
+			 */
 			
 			String type = "";
 			int id = 0;
 			int index = 0;
 			String downFileName = "";
-			String headPhotoSavePath = android.os.Environment.getExternalStorageDirectory() + "/Imitation/"
-					+ Person.username + "/FriendListHeadPhoto/";
+			String headPhotoSavePath = DataBaseInstance.prePath + Person.username + Publish.friendDirectory;
 			String saveFileName = "";
 			Bitmap bitmap = null;
 			for (int i = 0; i < changedHeadphotoId.length(); i++) { // download image
-				
+			
 				type = changedphototype.getString(i);
 				index = changedHeadphotoId.getInt(i);
 				id = Friend.friendUid[index];
-				System.out.println("开始更新"+Friend.friendUsername[index]+"的头像");
+				System.out.println("开始更新" + Friend.friendUsername[index] + "的头像");
 				downFileName = Friend.imageDownLoadPath + id + "." + type;
 				System.out.println(downFileName);
 				
-				//移除之前的图片jpg和png
+				// 移除之前的图片jpg和png
 				File tmp = new File(headPhotoSavePath + id + ".jpg");
-				if(tmp.exists()){
+				if (tmp.exists()) {
 					tmp.delete();
-				}else{
+				} else {
 					tmp = new File(headPhotoSavePath + id + ".png");
-					if(tmp.exists()){
+					if (tmp.exists()) {
 						tmp.delete();
 					}
 				}
@@ -128,26 +125,27 @@ public class FriendData extends Thread {
 				bitmap = download(downFileName, saveFileName);
 				Friend.friendHeadphoto[index] = bitmap;
 				
-				/*ContentValues values = new ContentValues();
-				values.put("headphotoversion", Friend.friendheadphotoversion[changedHeadphotoId.getInt(i)] + 1);
-				String whereClause = "uid=";
-				String[] whereArgs = new String[] { "" + Friend.friendUid[changedHeadphotoId.getInt(i)] };*/
+				/*
+				 * ContentValues values = new ContentValues(); values.put("headphotoversion",
+				 * Friend.friendheadphotoversion[changedHeadphotoId.getInt(i)] + 1); String whereClause = "uid=";
+				 * String[] whereArgs = new String[] { "" + Friend.friendUid[changedHeadphotoId.getInt(i)] };
+				 */
 				sql = "update " + tableName + " set headphotoversion="
-						+ (Friend.friendheadphotoversion[changedHeadphotoId.getInt(i)] + 1)
-						+" where uid="+Friend.friendUid[changedHeadphotoId.getInt(i)]+";";
+						+ (Friend.friendheadphotoversion[changedHeadphotoId.getInt(i)] + 1) + " where uid="
+						+ Friend.friendUid[changedHeadphotoId.getInt(i)] + ";";
 				db.execSQL(sql);
-				System.out.println(Friend.friendUsername[index]+"的头像更新完毕");
+				System.out.println(Friend.friendUsername[index] + "的头像更新完毕");
 			}
 			// 修改头像
-			/*if(changedHeadphotoId.length()>0){
-				Friend.dataChanged = true;	
-			}*/			
+			/*
+			 * if(changedHeadphotoId.length()>0){ Friend.dataChanged = true; }
+			 */
 			db.close();
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}
 	}
 	
 	public Bitmap download(String imageURL, String fileName) {

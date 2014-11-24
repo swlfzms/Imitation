@@ -77,6 +77,7 @@ public class MyClickListener implements OnItemClickListener{
 					// TODO Auto-generated method stub					
 				}
 			}).show();
+			break;
 		case 3://¸ü»»Í·Ïñ
 			Intent inte = new Intent();
 			inte.setType("image/*");

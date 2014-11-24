@@ -10,8 +10,6 @@ import com.example.beans.DataBaseInstance;
 
 public class CreateRootDirectory extends Thread {
 	
-	public final static String externalStorageDirectory = android.os.Environment.getExternalStorageDirectory()
-			+ "/Imitation";
 	private SQLiteDatabase db;
 	public final Logger DebugLogger = Logger.getLogger("Debug." + CreateRootDirectory.class.getName());
 	
@@ -21,79 +19,70 @@ public class CreateRootDirectory extends Thread {
 		databaseInit();
 		Looper.loop();
 	}
+	
+	/***
+	 * 
+	  * databaseInit("创建数据库")
+	  * TODO(这里描述这个方法适用条件 – 可选)
+	  * TODO(这里描述这个方法的执行流程 – 可选)
+	  * TODO(这里描述这个方法的使用方法 – 可选)
+	  * TODO(这里描述这个方法的注意事项 – 可选)
+	  *
+	  * @Title: databaseInit
+	  * @Description: TODO
+	  * @param     设定文件
+	  * @return void    返回类型
+	  * @throws
+	 */
 	private void databaseInit() {
 		// TODO Auto-generated method stub
-		System.out.println("create database");	
 		
-		db = SQLiteDatabase.openOrCreateDatabase(DataBaseInstance.path, null);				
+		System.out.println("create database");
+		db = SQLiteDatabase.openOrCreateDatabase(DataBaseInstance.fullPath, null);
 		System.out.println("database have been created");
 		db.close();
 	}
+	
+	/***
+	 * 
+	  * directoryIsExist(这里用一句话描述这个方法的作用)
+	  * TODO(这里描述这个方法适用条件 – 可选)
+	  * TODO(这里描述这个方法的执行流程 – 可选)
+	  * TODO(这里描述这个方法的使用方法 – 可选)
+	  * TODO(这里描述这个方法的注意事项 – 可选)
+	  *
+	  * @Title: directoryIsExist
+	  * @Description: TODO
+	  * @param @return    设定文件
+	  * @return boolean    返回类型
+	  * @throws
+	 */
 	public boolean directoryIsExist() {
-		File dir = new File(CreateRootDirectory.externalStorageDirectory);
-		
+		File dir = new File(DataBaseInstance.path);
 		if (dir.exists()) {
 			return true;
 		}
-		
 		return false;
 	}
-	public void createDirectory(){
-		File dir = new File(CreateRootDirectory.externalStorageDirectory);
-		if(!dir.exists())
+	
+	/***
+	 * 
+	  * createDirectory(这里用一句话描述这个方法的作用)
+	  * TODO(这里描述这个方法适用条件 – 可选)
+	  * TODO(这里描述这个方法的执行流程 – 可选)
+	  * TODO(这里描述这个方法的使用方法 – 可选)
+	  * TODO(这里描述这个方法的注意事项 – 可选)
+	  *
+	  * @Title: createDirectory
+	  * @Description: TODO
+	  * @param     设定文件
+	  * @return void    返回类型
+	  * @throws
+	 */
+	public void createDirectory() {
+		File dir = new File(DataBaseInstance.path);
+		if (!dir.exists())
 			dir.mkdirs();
-		dir = new File(DataBaseInstance.prePath);
-		if(!dir.exists())
-			dir.mkdirs();
 	}
-	
-	public void changeTable() {
-		SQLiteDatabase db = SQLiteDatabase.openDatabase(DataBaseInstance.path, null, SQLiteDatabase.OPEN_READWRITE);
-		String sql = "alter table jasonFriendList add ip varchar(30)";
-		db.execSQL(sql);
-		sql = "alter table welcomeFriendList add ip varchar(30)";
-		db.execSQL(sql);
-		sql = "alter table test1FriendList add ip varchar(30)";
-		db.execSQL(sql);
-		db.close();
-	}
-	
-	public void changeTableAddVersion(){
-		//headphotoversion
-		SQLiteDatabase db = SQLiteDatabase.openDatabase(DataBaseInstance.path, null, SQLiteDatabase.OPEN_READWRITE);
-		String sql = "alter table jasonFriendList add headphotoversion integer default 0";
-		db.execSQL(sql);
-		sql = "alter table welcomeFriendList add headphotoversion integer default 0";
-		db.execSQL(sql);
-		sql = "alter table test1FriendList add headphotoversion integer default 0";
-		db.execSQL(sql);
-		sql = "alter table jasonFriendList add signatureversion integer default 0";
-		db.execSQL(sql);
-		sql = "alter table welcomeFriendList add signatureversion integer default 0";
-		db.execSQL(sql);
-		sql = "alter table test1FriendList add signatureversion integer default 0";
-		db.execSQL(sql);
-		db.close();
-	}
-	
-	public void addHeadPhotoDirectory() {
-		String path = android.os.Environment.getExternalStorageDirectory().toString();
-		String jason = path + "/Imitation/jason/HeadPhoto";
-		String welcome = path + "/Imitation/welcome/HeadPhoto";
-		String test1 = path + "/Imitation/test1/FriendListHeadPhoto";
-		System.out.println(test1);
-		File file = new File(test1);		
-		file.mkdirs();
-		file = new File(jason);
-		file.mkdirs();
-		file = new File(welcome);
-		file.mkdirs();
-	}
-	
-	public void updateTest1Friend(){
-		SQLiteDatabase db = SQLiteDatabase.openDatabase(DataBaseInstance.path, null, SQLiteDatabase.OPEN_READWRITE);
-		String sql = "update test1FriendList set uid=0 where username='jason';";
-		db.execSQL(sql);		
-		db.close();
-	}
+			
 }

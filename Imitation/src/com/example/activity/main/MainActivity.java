@@ -5,12 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.example.activity.login.LoginActivity;
-import com.example.activity.welcomeview.WelcomeActivity;
 import com.example.beans.DataBaseInstance;
 import com.example.beans.Friend;
 import com.example.beans.LoginUser;
+import com.example.beans.Publish;
 import com.example.beans.Screen;
 import com.example.imitation.R;
 
@@ -22,12 +23,29 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		DataBaseInstance.path = getResources().getString(R.string.database_path);
-		DataBaseInstance.prePath = getResources().getString(R.string.database_prepath);
+		
+		// ≈–∂œ¥Ê¥¢ø® «∑Ò¥Ê‘⁄
+		boolean externalStorageState = android.os.Environment.getExternalStorageState().equals(
+				android.os.Environment.MEDIA_MOUNTED);
+		if (!externalStorageState) {
+			Toast.makeText(this, "«Î≤Â»ÎÕ‚÷√¥Ê¥¢ø®", Toast.LENGTH_LONG).show();
+			return;
+		}
+		
+		DataBaseInstance.externalStorage = android.os.Environment.getExternalStorageDirectory().toString();
+		DataBaseInstance.prePath = DataBaseInstance.externalStorage
+				+ getResources().getString(R.string.database_prepath);
+		DataBaseInstance.path = DataBaseInstance.externalStorage + getResources().getString(R.string.database_path);
+		DataBaseInstance.name = getResources().getString(R.string.database_name);
+		DataBaseInstance.fullPath = DataBaseInstance.path + DataBaseInstance.name;
+		
+		Publish.friendDirectory = getResources().getString(R.string.publish_friendDirectory);
+		Publish.selfDirectory = getResources().getString(R.string.publish_selfDirectory);
+		Publish.headphotoName = getResources().getString(R.string.publish_headphotoName);
+		Publish.friendList = getResources().getString(R.string.publish_FriendList);		
 		screenInit();
 		urlInit();
 		directoryInit(); // ƒø¬º≥ı ºªØ
-		getFilesDir().getPath();
 		/*
 		 * new Thread() { public void run() { databaseInit(); } }.start();
 		 */
@@ -71,10 +89,9 @@ public class MainActivity extends Activity {
 			loginActivityIntent.setClass(MainActivity.this, LoginActivity.class);
 			startActivity(loginActivityIntent);
 			/*
-			Intent welcomeIntent = new Intent();
-			welcomeIntent.setClass(MainActivity.this, WelcomeActivity.class);
-			startActivity(welcomeIntent);
-			*/
+			 * Intent welcomeIntent = new Intent(); welcomeIntent.setClass(MainActivity.this, WelcomeActivity.class);
+			 * startActivity(welcomeIntent);
+			 */
 		}
 		
 		// πÿ±’µ±«∞“≥

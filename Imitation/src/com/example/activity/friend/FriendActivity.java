@@ -23,8 +23,7 @@ import com.example.imitation.R;
 public class FriendActivity extends Activity {
 	
 	private MyAdater adapter;
-	private MyListView listView;
-	private String databasepath;
+	private MyListView listView;	
 	private String friendDataPath;
 	private Handler myHandler = new Handler() {
 		
@@ -60,13 +59,12 @@ public class FriendActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.mainlist);
-		databasepath = getResources().getString(R.string.database_path);
+		setContentView(R.layout.mainlist);		
 		listView = (MyListView) findViewById(R.id.listView);
 		
 		// 获取数据(SQLite)
 		friendDataPath = getResources().getString(R.string.url_publish_frienddata); //检查数据变化
-		FriendList friendList = new FriendList(databasepath, friendDataPath);
+		FriendList friendList = new FriendList(friendDataPath);
 		friendList.setFriendActivity(this);
 		friendList.start();
 		
@@ -131,7 +129,7 @@ public class FriendActivity extends Activity {
 		protected Void doInBackground(Void... params) {
 			try {
 				System.out.println("开始刷新");
-				FriendList friendList = new FriendList(databasepath,friendDataPath);
+				FriendList friendList = new FriendList(friendDataPath);
 				friendList.setFriendActivity(FriendActivity.this);
 				friendList.flush();
 				System.out.println("刷新后的内容");

@@ -37,7 +37,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.activity.login.LoginActivity;
+import com.example.beans.DataBaseInstance;
 import com.example.beans.Person;
+import com.example.beans.Publish;
 import com.example.imitation.R;
 import com.example.service.Service;
 
@@ -238,8 +240,8 @@ public class PublishActivity extends Activity {
 				System.out.println("收到的信息:"+message);								
 				// 得到结果，取消进度条				
 				if (result) { // 成功并在本地更换头像。
-					String headPhotoSavePath = android.os.Environment.getExternalStorageDirectory() + "/Imitation/"
-							+ Person.username + "/HeadPhoto/headphoto0";
+					String headPhotoSavePath = DataBaseInstance.prePath
+							+ Person.username + Publish.selfDirectory+Publish.headphotoName;
 					// 移除之前的图片jpg和png
 					File tmp = new File(headPhotoSavePath + ".jpg");
 					if (tmp.exists()) {

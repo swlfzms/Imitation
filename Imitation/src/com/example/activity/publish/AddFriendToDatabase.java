@@ -17,6 +17,7 @@ import android.os.Looper;
 import com.example.beans.DataBaseInstance;
 import com.example.beans.Friend;
 import com.example.beans.Person;
+import com.example.beans.Publish;
 
 public class AddFriendToDatabase extends Thread {
 	
@@ -37,7 +38,7 @@ public class AddFriendToDatabase extends Thread {
 	
 	public void run() {
 		Looper.prepare();
-		SQLiteDatabase db = SQLiteDatabase.openDatabase(DataBaseInstance.path, null, SQLiteDatabase.OPEN_READWRITE);
+		SQLiteDatabase db = SQLiteDatabase.openDatabase(DataBaseInstance.fullPath, null, SQLiteDatabase.OPEN_READWRITE);
 		ContentValues values = new ContentValues();
 		values.put("uid", this.id);
 		values.put("username", this.username);
@@ -65,10 +66,11 @@ public class AddFriendToDatabase extends Thread {
 		friendStatus[length] = status;
 		
 		String type = ".png";
-		String friendHeadPhoto = android.os.Environment.getExternalStorageDirectory() + "/Imitation/" + Person.username
-				+ "/FriendListHeadPhoto/" + id + ".png";
-		String selfHeadPhoto = android.os.Environment.getExternalStorageDirectory() + "/Imitation/" + Person.username
-				+ "/HeadPhoto/headphoto0";
+		String friendHeadPhoto = DataBaseInstance.prePath + Person.username
+				+ Publish.friendDirectory + id + ".png";
+		String selfHeadPhoto = DataBaseInstance.prePath + Person.username
+				+ Publish.selfDirectory + Publish.headphotoName;
+		
 		File fileSelfHeadPhoto = new File(selfHeadPhoto + type);
 		File fileFriendHeadPhoto = new File(friendHeadPhoto);
 		if (fileSelfHeadPhoto.exists()) {

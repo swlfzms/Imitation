@@ -50,13 +50,10 @@ public class RegisterActivity extends Activity {
 				Toast.makeText(RegisterActivity.this, registerMessage, Toast.LENGTH_SHORT).show();
 				progressDialog.cancel();
 				
-				// 创建当前用户的朋友列表
-				String database_name = getResources().getString(R.string.database_name);
-				String path = RegisterActivity.this.getFilesDir().getPath() + database_name;
-				System.out.println(path);
+				// 创建当前用户的朋友列表							
 				Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.headphoto0);				
 				 
-				CreateFriendListTable createFriendListTable = new CreateFriendListTable(RegisterUser.username, path, bitmap);
+				CreateFriendListTable createFriendListTable = new CreateFriendListTable(RegisterUser.username, bitmap);
 				createFriendListTable.start();
 				
 				break;

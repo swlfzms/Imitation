@@ -175,13 +175,18 @@ public final class R {
         public static final int btnLogin=0x7f070008;
         public static final int btnRegist=0x7f070009;
         public static final int btnclose=0x7f07000d;
-        public static final int database_createtable_friendList=0x7f070020;
         public static final int database_name=0x7f07001f;
         public static final int database_path=0x7f07001e;
         /**  database 
          */
         public static final int database_prepath=0x7f07001d;
         public static final int hello_world=0x7f070002;
+        public static final int publish_FriendList=0x7f070023;
+        /**  publish beans 
+         */
+        public static final int publish_friendDirectory=0x7f070020;
+        public static final int publish_headphotoName=0x7f070022;
+        public static final int publish_selfDirectory=0x7f070021;
         public static final int send=0x7f07000c;
         public static final int strExit=0x7f07000f;
         public static final int strMyAlbum=0x7f07001c;

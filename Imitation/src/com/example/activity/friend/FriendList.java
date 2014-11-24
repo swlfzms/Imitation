@@ -11,20 +11,20 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Looper;
 
+import com.example.beans.DataBaseInstance;
 import com.example.beans.Friend;
 import com.example.beans.Person;
+import com.example.beans.Publish;
 import com.example.imitation.R;
 
 public class FriendList extends Thread {
-	
-	private String path;
+		
 	private String friendDataPath;
-	private String tableName = Person.username + "FriendList";
+	private String tableName = Person.username + Publish.friendList;
 	private FriendActivity friendActivity;	
 	
-	public FriendList(String path, String friendDataPath) {
-		// TODO Auto-generated constructor stub
-		this.path = path;
+	public FriendList(String friendDataPath) {
+		// TODO Auto-generated constructor stub		
 		this.friendDataPath = friendDataPath;
 	}
 	
@@ -37,7 +37,7 @@ public class FriendList extends Thread {
 		// TODO Auto-generated method stub
 		Looper.prepare();
 		System.out.println("开始获取好友列表信息");
-		SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(path, null);
+		SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(DataBaseInstance.fullPath, null);
 		
 		Cursor c = db.query(tableName, new String[] { "uid", "username", "signature", "status", "headphotoversion",
 				"signatureversion" }, null, null, null, null, "uid");
@@ -67,8 +67,7 @@ public class FriendList extends Thread {
 			System.out.println("friend: "+friendUid[i]+", "+friendUsername[i]);
 			i++;
 		}
-		String headphotopath = android.os.Environment.getExternalStorageDirectory() + "/Imitation/" + Person.username
-				+ "/FriendListHeadPhoto/";
+		String headphotopath = DataBaseInstance.prePath + Person.username + Publish.friendDirectory;
 		
 		File file;
 		for (int j = 0; j < i; j++) {
@@ -126,7 +125,7 @@ public class FriendList extends Thread {
 	
 	public void flush(){
 		System.out.println("flush 开始获取好友列表信息");
-		SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(path, null);
+		SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(DataBaseInstance.fullPath, null);
 		
 		Cursor c = db.query(tableName, new String[] { "uid", "username", "signature", "status", "headphotoversion",
 				"signatureversion" }, null, null, null, null, "uid");
@@ -156,8 +155,7 @@ public class FriendList extends Thread {
 			System.out.println("friend: "+friendUid[i]+", "+friendUsername[i]);
 			i++;
 		}
-		String headphotopath = android.os.Environment.getExternalStorageDirectory() + "/Imitation/" + Person.username
-				+ "/FriendListHeadPhoto/";
+		String headphotopath = DataBaseInstance.prePath + Person.username + Publish.friendDirectory;
 		
 		File file;
 		for (int j = 0; j < i; j++) {
