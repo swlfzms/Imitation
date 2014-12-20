@@ -1,4 +1,4 @@
-package com.example.activity.publish;
+ package com.example.activity.publish;
 
 import org.json.JSONObject;
 
@@ -71,7 +71,7 @@ public class MyTask extends AsyncTask<Void, Void, Void> {
 		try {
 			result = isFriendAlready(this.requestMessage);
 			if (result == true) {
-				message = "那家伙已经是你的好友";
+				message = "閭ｅ浼欏凡缁忔槸浣犵殑濂藉弸";
 			} else {
 				sendObject.put("friendName", this.requestMessage);
 				System.out.println(this.requestMessage);
@@ -103,7 +103,7 @@ public class MyTask extends AsyncTask<Void, Void, Void> {
 	}
 	
 	public boolean isFriendAlready(String username) {
-		// 全部转成小写字母
+		// 鍏ㄩ儴杞垚灏忓啓瀛楁瘝
 		for (int i = 0; i < Friend.friendUsername.length; i++) {
 			if (Friend.friendUsername[i].toLowerCase().equals(username.toLowerCase())) {
 				return true;

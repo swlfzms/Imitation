@@ -1,5 +1,7 @@
 package com.example.activity.main;
 
+import java.io.File;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +10,8 @@ import android.view.Menu;
 import android.widget.Toast;
 
 import com.example.activity.login.LoginActivity;
+import com.example.activity.welcomeview.WelcomeActivity;
+import com.example.beans.Communication;
 import com.example.beans.DataBaseInstance;
 import com.example.beans.Friend;
 import com.example.beans.LoginUser;
@@ -24,11 +28,11 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		// ÅĞ¶Ï´æ´¢¿¨ÊÇ·ñ´æÔÚ
+		// åˆ¤æ–­å­˜å‚¨å¡æ˜¯å¦å­˜åœ¨
 		boolean externalStorageState = android.os.Environment.getExternalStorageState().equals(
 				android.os.Environment.MEDIA_MOUNTED);
 		if (!externalStorageState) {
-			Toast.makeText(this, "Çë²åÈëÍâÖÃ´æ´¢¿¨", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "è¯·æ’å…¥å¤–ç½®å­˜å‚¨å¡", Toast.LENGTH_LONG).show();
 			return;
 		}
 		
@@ -42,10 +46,30 @@ public class MainActivity extends Activity {
 		Publish.friendDirectory = getResources().getString(R.string.publish_friendDirectory);
 		Publish.selfDirectory = getResources().getString(R.string.publish_selfDirectory);
 		Publish.headphotoName = getResources().getString(R.string.publish_headphotoName);
-		Publish.friendList = getResources().getString(R.string.publish_FriendList);		
+		Publish.friendList = getResources().getString(R.string.publish_FriendList);
+		
+		Communication.port = Integer.parseInt(getResources().getString(R.string.communication_port));
+		Communication.url = getResources().getString(R.string.communication_address);
+		Communication.chatDirectory = DataBaseInstance.prePath + getResources().getString(R.string.chat_directory);
+		Communication.voiceSavePath = DataBaseInstance.externalStorage + getResources().getString(R.string.communication_voiceSavePath);
+
 		screenInit();
 		urlInit();
-		directoryInit(); // Ä¿Â¼³õÊ¼»¯
+		directoryInit(); // ç›®å½•åˆå§‹åŒ–
+		
+		new Thread(){
+		
+			public void run(){
+				File dir = new File(Communication.chatDirectory);
+				if(!dir.exists()){
+					dir.mkdirs();
+				}
+                dir = new File(Communication.voiceSavePath);
+                if(!dir.exists()){
+                    dir.mkdirs();
+                }
+			};
+		}.start();
 		/*
 		 * new Thread() { public void run() { databaseInit(); } }.start();
 		 */
@@ -59,9 +83,9 @@ public class MainActivity extends Activity {
 		Screen.height = displayMetrics.heightPixels;
 	}
 	
-	// Í¨ĞÅµØÖ·³õÊ¼»¯
+	// é€šä¿¡åœ°å€åˆå§‹åŒ–
 	private void urlInit() {
-		// µÇÂ¼µØÖ·³õÊ¼»¯
+		// ç™»å½•åœ°å€åˆå§‹åŒ–
 		String loginUrl = getResources().getString(R.string.url_login_loginIp);
 		String logoutUrl = getResources().getString(R.string.url_logout_logoutIp);
 		
@@ -72,29 +96,31 @@ public class MainActivity extends Activity {
 	}
 	
 	private void directoryInit() {
-		// ´´½¨Íâ²¿´æ´¢Ä¿Â¼
+		// åˆ›å»ºå¤–éƒ¨å­˜å‚¨ç›®å½•
 		CreateRootDirectory createRootDirectory = new CreateRootDirectory();
 		
 		boolean directory = createRootDirectory.directoryIsExist();
-		System.out.println("Â·¾¶ÊÇ·ñ´æÔÚ£º " + directory);
-		if (directory) { // Ö±½Ó½øÈëµÇÂ¼Ò³Ãæ
+		System.out.println("è·¯å¾„æ˜¯å¦å­˜åœ¨ï¼š " + directory);
+		if (directory) { // ç›´æ¥è¿›å…¥ç™»å½•é¡µé¢
 		
 			Intent loginActivityIntent = new Intent();
 			loginActivityIntent.setClass(MainActivity.this, LoginActivity.class);
 			startActivity(loginActivityIntent);
-		} else { // Ê×´Î½øÈë
+		} else { // é¦–æ¬¡è¿›å…¥
 		
 			createRootDirectory.start();
-			Intent loginActivityIntent = new Intent();
-			loginActivityIntent.setClass(MainActivity.this, LoginActivity.class);
-			startActivity(loginActivityIntent);
 			/*
-			 * Intent welcomeIntent = new Intent(); welcomeIntent.setClass(MainActivity.this, WelcomeActivity.class);
-			 * startActivity(welcomeIntent);
+			 * Intent loginActivityIntent = new Intent(); loginActivityIntent.setClass(MainActivity.this,
+			 * LoginActivity.class); startActivity(loginActivityIntent);
 			 */
+			
+			Intent welcomeIntent = new Intent();
+			welcomeIntent.setClass(MainActivity.this, WelcomeActivity.class);
+			startActivity(welcomeIntent);
+			
 		}
 		
-		// ¹Ø±Õµ±Ç°Ò³
+		// å…³é—­å½“å‰é¡µ
 		MainActivity.this.finish();
 	}
 	

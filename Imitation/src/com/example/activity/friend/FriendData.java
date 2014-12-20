@@ -13,11 +13,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Looper;
+import android.util.Log;
 
 import com.example.beans.DataBaseInstance;
 import com.example.beans.Friend;
@@ -29,6 +28,7 @@ public class FriendData extends Thread {
 	
 	private String path;
 	private String tableName = Person.username + Publish.friendList;
+	private String className = FriendData.class.getName();
 	
 	public FriendData(String path) {
 		this.path = path;
@@ -37,9 +37,9 @@ public class FriendData extends Thread {
 	/*
 	 * 
 	 * 
-	 * <p>Title: run</p> <p>Ê×ÏÈ£¬»ñÈ¡Êı¾İ¿âÖĞfriendµÄÊı¾İµÄÊ±ºòÊÇ°´ÕÕuidÅÅĞòµÄ£¬È»ºó½«ÅÅºÃĞòµÄuidµÇÊı×é´æÈëJSONArrayÊı×é·¢ËÍµ½server.
-	 * ½Ó×Å£¬´Óserver»ñÈ¡µÄÊı¾İÍ¬ÑùÊÇ°´ÕÕuidÅÅĞòºóµÄJSONArray¡£ eg: ¼ÙÉè»ñÈ¡µÄÇ©Ãû¶ÔÏóchangedSignatureId={0,2,4},´ú±íµÄÊÇFriend.uidÊı×éÖĞµÄ±àºÅ£¬²¢·ÇÕæÕıµÄuid£¬ËùÒÔ
-	 * ÒªÍ¨¹ıFriend.uid[0],Friend.uid[2],Friend.uid[4]£¬À´»ñÈ¡ÕæÕıµÄuid£¬Í¬Àí»ñÈ¡Í·Ïñ</p>
+	 * <p>Title: run</p> <p>é¦–å…ˆï¼Œè·å–æ•°æ®åº“ä¸­friendçš„æ•°æ®çš„æ—¶å€™æ˜¯æŒ‰ç…§uidæ’åºçš„ï¼Œç„¶åå°†æ’å¥½åºçš„uidç™»æ•°ç»„å­˜å…¥JSONArrayæ•°ç»„å‘é€åˆ°server.
+	 * æ¥ç€ï¼Œä»serverè·å–çš„æ•°æ®åŒæ ·æ˜¯æŒ‰ç…§uidæ’åºåçš„JSONArrayã€‚ eg: å‡è®¾è·å–çš„ç­¾åå¯¹è±¡changedSignatureId={0,2,4},ä»£è¡¨çš„æ˜¯Friend.uidæ•°ç»„ä¸­çš„ç¼–å·ï¼Œå¹¶éçœŸæ­£çš„uidï¼Œæ‰€ä»¥
+	 * è¦é€šè¿‡Friend.uid[0],Friend.uid[2],Friend.uid[4]ï¼Œæ¥è·å–çœŸæ­£çš„uidï¼ŒåŒç†è·å–å¤´åƒ</p>
 	 * 
 	 * @see java.lang.Thread#run()
 	 */
@@ -66,34 +66,63 @@ public class FriendData extends Thread {
 			}
 			sendObject.put("friendsignatureversion", signatureJsonArray);
 			
-			System.out.println("·¢ËÍÄÚÈİ£º " + sendObject);
+			Log.e(className, "å‘é€å†…å®¹ï¼š " + sendObject);
 			Service service = new Service(sendObject, path);
 			JSONObject receiveObject = service.getResult();
 			
 			JSONArray changedSignatureId = (JSONArray) receiveObject.get("changedSignatureId");
 			JSONArray changedSignatureContent = (JSONArray) receiveObject.get("changedSignatureContent");
+			JSONArray changedSignatureVersion = (JSONArray) receiveObject.get("changedSignatureVersion");
+			
 			JSONArray changedHeadphotoId = (JSONArray) receiveObject.get("changedHeadphotoId");
 			JSONArray changedphototype = (JSONArray) receiveObject.get("changedphototype");
-			System.out.println("½ÓÊÕÄÚÈİ£º" + changedSignatureId + " " + changedHeadphotoId);
+			JSONArray changedphotoversion = (JSONArray) receiveObject.get("changedphotoversion");
+			
+			JSONArray changedStatus = (JSONArray) receiveObject.get("changedStatus");
+			
+			Log.e(className, "æ¥æ”¶å†…å®¹ï¼š" + changedSignatureId + " " + changedHeadphotoId + " " + changedStatus);
 			
 			SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(DataBaseInstance.fullPath, null);
 			String sql = "";
-			for (int i = 0; i < changedSignatureId.length(); i++) {
-				System.out.println("¿ªÊ¼¸üĞÂ" + Friend.friendUsername[changedSignatureId.getInt(i)] + "µÄÇ©Ãû");
-				Friend.friendSignature[changedSignatureId.getInt(i)] = changedSignatureContent
-						.getString(changedSignatureId.getInt(i));
+			
+			// æ›´æ–°çŠ¶æ€
+			for (int i = 0; i < changedStatus.length(); i++) {
 				
-				sql = "update " + tableName + " set signatureversion="
-						+ (Friend.friendsignatureversion[changedSignatureId.getInt(i)] + 1) + ",signature='"
-						+ Friend.friendSignature[changedSignatureId.getInt(i)] + "' where uid="
-						+ Friend.friendUid[changedSignatureId.getInt(i)] + ";";
+				Log.e(className, "å¼€å§‹æ›´æ–°" + Friend.friendUsername[i] + "çš„çŠ¶æ€ä¸ºï¼š " + changedStatus.getInt(i));
+				Friend.friendStatus[i] = changedStatus.getInt(i);
+				
+				sql = "update " + tableName + " set status=" + changedStatus.getInt(i) + " where uid="
+						+ Friend.friendUid[i] + ";";
 				db.execSQL(sql);
-				System.out.println(Friend.friendUsername[changedSignatureId.getInt(i)] + "µÄÇ©Ãû¸üĞÂÍê±Ï");
+			}
+			
+			Log.e(className, "éœ€è¦æ›´æ–°ç­¾åçš„æ•°é‡ " + changedSignatureId.length());
+			Log.e(className, "uid num:" + Friend.friendUid.length + ", signature num:" + Friend.friendSignature.length
+					+ ", sign_ver num:" + Friend.friendsignatureversion.length);
+			// æ›´æ–°ç­¾å
+			for (int i = 0; i < changedSignatureId.length(); i++) {
+				try {
+					int index = changedSignatureId.getInt(i);
+					Log.e(className,
+							"å¼€å§‹æ›´æ–°" + Friend.friendUsername[index] + "çš„ç­¾åä¸º:" + changedSignatureContent.getString(i));
+					Log.e(className, "ç´¢å¼•: "+index);
+					Friend.friendSignature[index] = changedSignatureContent.getString(i);
+					Friend.friendsignatureversion[index] = changedSignatureVersion.getInt(i);
+					
+					sql = "update " + tableName + " set signatureversion=" + Friend.friendsignatureversion[index]
+							+ ",signature='" + Friend.friendSignature[index] + "' where uid=" + Friend.friendUid[index]
+							+ ";";
+					db.execSQL(sql);
+					Log.e(className, Friend.friendUsername[changedSignatureId.getInt(i)] + "çš„ç­¾åæ›´æ–°å®Œæ¯•");
+				} catch (Exception e) {
+					Log.e(className, e.getMessage());
+				}
 			}
 			/*
-			 * // ĞŞ¸ÄÇ©Ãû if(changedSignatureId.length()>0){ Friend.dataChanged = true; }
+			 * // ä¿®æ”¹ç­¾å if(changedSignatureId.length()>0){ Friend.dataChanged = true; }
 			 */
 			
+			// æ›´æ–°å¤´åƒ
 			String type = "";
 			int id = 0;
 			int index = 0;
@@ -101,45 +130,54 @@ public class FriendData extends Thread {
 			String headPhotoSavePath = DataBaseInstance.prePath + Person.username + Publish.friendDirectory;
 			String saveFileName = "";
 			Bitmap bitmap = null;
-			for (int i = 0; i < changedHeadphotoId.length(); i++) { // download image
+			Log.e(className, "éœ€è¦æ›´æ–°å¤´åƒçš„æ•°é‡ " + changedHeadphotoId.length());
+			Log.e(className, "uid num:" + Friend.friendUid.length + ", friendHeadphoto num:" + Friend.friendHeadphoto.length
+					+ ", friendheadphotoversion num:" + Friend.friendheadphotoversion.length);
 			
-				type = changedphototype.getString(i);
-				index = changedHeadphotoId.getInt(i);
-				id = Friend.friendUid[index];
-				System.out.println("¿ªÊ¼¸üĞÂ" + Friend.friendUsername[index] + "µÄÍ·Ïñ");
-				downFileName = Friend.imageDownLoadPath + id + "." + type;
-				System.out.println(downFileName);
-				
-				// ÒÆ³ıÖ®Ç°µÄÍ¼Æ¬jpgºÍpng
-				File tmp = new File(headPhotoSavePath + id + ".jpg");
-				if (tmp.exists()) {
-					tmp.delete();
-				} else {
-					tmp = new File(headPhotoSavePath + id + ".png");
+			for (int i = 0; i < changedHeadphotoId.length(); i++) { // download image
+				try {
+					type = changedphototype.getString(i);
+					index = changedHeadphotoId.getInt(i);
+					Log.e(className, "ç´¢å¼•: "+index);
+					
+					id = Friend.friendUid[index];					
+					Log.e(className, "å¼€å§‹æ›´æ–°" + Friend.friendUsername[index] + "çš„å¤´åƒ");
+					downFileName = Friend.imageDownLoadPath + id + "." + type;
+					Log.e(className, downFileName);
+					
+					// ç§»é™¤ä¹‹å‰çš„å›¾ç‰‡jpgå’Œpng
+					File tmp = new File(headPhotoSavePath + id + ".jpg");
 					if (tmp.exists()) {
 						tmp.delete();
+					} else {
+						tmp = new File(headPhotoSavePath + id + ".png");
+						if (tmp.exists()) {
+							tmp.delete();
+						}
 					}
+					
+					saveFileName = headPhotoSavePath + id + "." + type;
+					bitmap = download(downFileName, saveFileName);
+					Friend.friendHeadphoto[index] = bitmap;
+					Friend.friendheadphotoversion[index] = changedphotoversion.getInt(i);
+					/*
+					 * ContentValues values = new ContentValues(); values.put("headphotoversion",
+					 * Friend.friendheadphotoversion[changedHeadphotoId.getInt(i)] + 1); String whereClause = "uid=";
+					 * String[] whereArgs = new String[] { "" + Friend.friendUid[changedHeadphotoId.getInt(i)] };
+					 */
+					sql = "update " + tableName + " set headphotoversion=" + Friend.friendheadphotoversion[index]
+							+ " where uid=" + Friend.friendUid[index] + ";";
+					db.execSQL(sql);
+					Log.e(className, Friend.friendUsername[index] + "çš„å¤´åƒæ›´æ–°å®Œæ¯•");
+				} catch (Exception e) {
+					Log.e(className, e.getMessage());
 				}
-				
-				saveFileName = headPhotoSavePath + id + "." + type;
-				bitmap = download(downFileName, saveFileName);
-				Friend.friendHeadphoto[index] = bitmap;
-				
-				/*
-				 * ContentValues values = new ContentValues(); values.put("headphotoversion",
-				 * Friend.friendheadphotoversion[changedHeadphotoId.getInt(i)] + 1); String whereClause = "uid=";
-				 * String[] whereArgs = new String[] { "" + Friend.friendUid[changedHeadphotoId.getInt(i)] };
-				 */
-				sql = "update " + tableName + " set headphotoversion="
-						+ (Friend.friendheadphotoversion[changedHeadphotoId.getInt(i)] + 1) + " where uid="
-						+ Friend.friendUid[changedHeadphotoId.getInt(i)] + ";";
-				db.execSQL(sql);
-				System.out.println(Friend.friendUsername[index] + "µÄÍ·Ïñ¸üĞÂÍê±Ï");
 			}
-			// ĞŞ¸ÄÍ·Ïñ
 			/*
-			 * if(changedHeadphotoId.length()>0){ Friend.dataChanged = true; }
+			 * // ä¿®æ”¹å¤´åƒ if(changedHeadphotoId.length()>0){ Friend.dataChanged = true; }
 			 */
+			// æ›´æ–°æ•°æ®
+			Friend.addFriend = true;
 			db.close();
 			
 		} catch (JSONException e) {

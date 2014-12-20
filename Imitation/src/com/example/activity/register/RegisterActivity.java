@@ -39,18 +39,18 @@ public class RegisterActivity extends Activity {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			
-			// ×¢²áÊ§°Ü
+			// æ³¨å†Œå¤±è´¥
 			case 0:
 				Toast.makeText(RegisterActivity.this, registerMessage, Toast.LENGTH_SHORT).show();
 				progressDialog.cancel();
 				break;
 			
-			// ×¢²á³É¹¦
+			// æ³¨å†ŒæˆåŠŸ
 			case 1:
 				Toast.makeText(RegisterActivity.this, registerMessage, Toast.LENGTH_SHORT).show();
 				progressDialog.cancel();
 				
-				// ´´½¨µ±Ç°ÓÃ»§µÄÅóÓÑÁĞ±í							
+				// åˆ›å»ºå½“å‰ç”¨æˆ·çš„æœ‹å‹åˆ—è¡¨							
 				Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.headphoto0);				
 				 
 				CreateFriendListTable createFriendListTable = new CreateFriendListTable(RegisterUser.username, bitmap);
@@ -89,27 +89,27 @@ public class RegisterActivity extends Activity {
 			final String rePass = edRegisterRePass.getText().toString();
 			
 			if (!checkString(email)) {
-				Toast.makeText(RegisterActivity.this, "email¸ñÊ½²»ÕıÈ·", Toast.LENGTH_SHORT).show();
+				Toast.makeText(RegisterActivity.this, "emailæ ¼å¼ä¸æ­£ç¡®", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (!checkSpace(email)) {
-				Toast.makeText(RegisterActivity.this, "email²»Îª¿Õ£¬ÇÒ²»º¬ÓĞ¿Õ¸ñ", Toast.LENGTH_SHORT).show();
+				Toast.makeText(RegisterActivity.this, "emailä¸ä¸ºç©ºï¼Œä¸”ä¸å«æœ‰ç©ºæ ¼", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (!checkSpace(username)) {
-				Toast.makeText(RegisterActivity.this, "ÓÃ»§Ãû²»Îª¿Õ£¬ÇÒ²»º¬ÓĞ¿Õ¸ñ", Toast.LENGTH_SHORT).show();
+				Toast.makeText(RegisterActivity.this, "ç”¨æˆ·åä¸ä¸ºç©ºï¼Œä¸”ä¸å«æœ‰ç©ºæ ¼", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (!checkSpace(password)) {
-				Toast.makeText(RegisterActivity.this, "ÃÜÂë²»Îª¿Õ£¬ÇÒ²»º¬ÓĞ¿Õ¸ñ", Toast.LENGTH_SHORT).show();
+				Toast.makeText(RegisterActivity.this, "å¯†ç ä¸ä¸ºç©ºï¼Œä¸”ä¸å«æœ‰ç©ºæ ¼", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (!checkSpace(rePass)) {
-				Toast.makeText(RegisterActivity.this, "È·ÈÏÃÜÂë²»Îª¿Õ£¬ÇÒ²»º¬ÓĞ¿Õ¸ñ", Toast.LENGTH_SHORT).show();
+				Toast.makeText(RegisterActivity.this, "ç¡®è®¤å¯†ç ä¸ä¸ºç©ºï¼Œä¸”ä¸å«æœ‰ç©ºæ ¼", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (!password.equals(rePass)) {
-				Toast.makeText(RegisterActivity.this, "ÃÜÂë²»ÏàÍ¬", Toast.LENGTH_SHORT).show();
+				Toast.makeText(RegisterActivity.this, "å¯†ç ä¸ç›¸åŒ", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			
@@ -117,8 +117,8 @@ public class RegisterActivity extends Activity {
 			RegisterUser.password = password;
 			RegisterUser.email = email;
 			
-			// ÏÔÊ¾Ñ­»·½ø¶ÈÈ¦
-			progressDialog = ProgressDialog.show(RegisterActivity.this, "ÇëÉÔºò", "ÍæÃü¼ÓÔØÖĞ...", true, true);
+			// æ˜¾ç¤ºå¾ªç¯è¿›åº¦åœˆ
+			progressDialog = ProgressDialog.show(RegisterActivity.this, "è¯·ç¨å€™", "ç©å‘½åŠ è½½ä¸­...", true, true);
 			progressDialog.setCanceledOnTouchOutside(true);
 			progressDialog.setCancelable(true);
 			progressDialog.show();
@@ -136,6 +136,9 @@ public class RegisterActivity extends Activity {
 			Intent LoginActivityIntent = new Intent();
 			LoginActivityIntent.setClass(RegisterActivity.this, LoginActivity.class);
 			startActivity(LoginActivityIntent);
+			if(progressDialog.isShowing()){
+				progressDialog.dismiss();
+			}
 			RegisterActivity.this.finish();
 		}
 	};

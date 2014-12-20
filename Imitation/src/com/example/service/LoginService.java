@@ -40,7 +40,7 @@ public class LoginService extends Thread {
 	@Override
 	public void run() {
 		Looper.prepare();
-		LoginUser.password = encrption(LoginUser.password); // ¼ÓÃÜÃÜÂë£»
+		LoginUser.password = encrption(LoginUser.password); // åŠ å¯†å¯†ç ï¼›
 		
 		try {			
 			
@@ -80,14 +80,14 @@ public class LoginService extends Thread {
 				boolean result = loginUserJsonObject.getBoolean("result");
 				String message = loginUserJsonObject.getString("message");				
 				
-				if (result) { // ³É¹¦
-					//¼ÇÂ¼µ±Ç°µÇÂ¼ÓÃ»§					
+				if (result) { // æˆåŠŸ
+					//è®°å½•å½“å‰ç™»å½•ç”¨æˆ·					
 					Person.username = LoginUser.username;
 					Person.password = LoginUser.password;
 					int id = loginUserJsonObject.getInt("id");
 					Person.id = id;
 					loginActivity.getMyHandler().sendEmptyMessage(1);
-				} else { // Ê§°Ü
+				} else { // å¤±è´¥
 					loginActivity.getMyHandler().sendEmptyMessage(0);
 				}
 				loginActivity.loginMessage = message;
@@ -109,12 +109,12 @@ public class LoginService extends Thread {
 		Looper.loop();
 	}
 	
-	// ¼ÓÃÜ·½·¨
+	// åŠ å¯†æ–¹æ³•
 	public String encrption(String str) {
 		return Encryption.getMD5ofStr(str, 7);
 	}
 	
-	// ²»ÔÙÊ¹ÓÃµÄ·½·¨
+	// ä¸å†ä½¿ç”¨çš„æ–¹æ³•
 	@Deprecated
 	@SuppressWarnings("unchecked")
 	public boolean post(String username, String password) {

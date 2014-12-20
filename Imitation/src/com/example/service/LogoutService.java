@@ -28,7 +28,7 @@ public class LogoutService extends Thread {
 		// TODO Auto-generated method stub
 		Looper.prepare();
 		
-		//Person 为实际登录的用户
+		//Person 涓哄疄闄呯櫥褰曠殑鐢ㄦ埛
 		try {		
 			JSONObject jsonObject = new JSONObject();			
 			jsonObject.put("id", Person.id);			
@@ -40,7 +40,7 @@ public class LogoutService extends Thread {
 			httpPost.addHeader("Content-Type", "application/json");
 			httpPost.setEntity(new StringEntity(jsonObject.toString()));
 			
-			//执行发送下线通知
+			//鎵ц鍙戦�佷笅绾块�氱煡
 			HttpClient httpClient = new DefaultHttpClient();
 			httpClient.execute(httpPost);
 			

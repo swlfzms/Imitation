@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Looper;
+import android.util.Log;
 
 import com.example.beans.DataBaseInstance;
 import com.example.beans.Friend;
@@ -19,6 +20,7 @@ import com.example.imitation.R;
 
 public class FriendList extends Thread {
 		
+	private String className = FriendList.class.getName();
 	private String friendDataPath;
 	private String tableName = Person.username + Publish.friendList;
 	private FriendActivity friendActivity;	
@@ -35,8 +37,8 @@ public class FriendList extends Thread {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		Looper.prepare();
-		System.out.println("¿ªÊ¼»ñÈ¡ºÃÓÑÁĞ±íĞÅÏ¢");
+		Looper.prepare();		
+		Log.e(className, "å¼€å§‹è·å–å¥½å‹åˆ—è¡¨ä¿¡æ¯");
 		SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(DataBaseInstance.fullPath, null);
 		
 		Cursor c = db.query(tableName, new String[] { "uid", "username", "signature", "status", "headphotoversion",
@@ -57,23 +59,25 @@ public class FriendList extends Thread {
 		Bitmap[] friendHeadphoto = new Bitmap[c.getCount()];
 		
 		int i = 0;
-		for (c.moveToFirst(); !(c.isAfterLast()); c.moveToNext()) {
+		for (c.moveToFirst(); !(c.isAfterLast()); c.moveToNext()) {			
 			friendUid[i] = c.getInt(uidIndex);
 			friendUsername[i] = c.getString(usernameIndex);
 			friendSignature[i] = c.getString(signatureIndex);
 			friendStatus[i] = c.getInt(statusIndex);
+			Log.e(className, friendUsername[i]+"çš„çŠ¶æ€æ˜¯ï¼š"+friendStatus[i]);
 			friendheadphotoversion[i] = c.getInt(headphotoversionIndex);
-			friendsignatureversion[i] = c.getInt(signatureversionIndex);
-			System.out.println("friend: "+friendUid[i]+", "+friendUsername[i]);
+			friendsignatureversion[i] = c.getInt(signatureversionIndex);						
+			Log.e(className, "id: "+ friendUid[i] + ",name: "+ friendUsername[i]); 
 			i++;
 		}
 		String headphotopath = DataBaseInstance.prePath + Person.username + Publish.friendDirectory;
 		
 		File file;
 		for (int j = 0; j < i; j++) {
-			// ÅĞ¶ÏÀàĞÍ£¬¾ÍÁ½ÖÖjpgºÍpng
+			// åˆ¤æ–­ç±»å‹ï¼Œå°±ä¸¤ç§jpgå’Œpng
 			String filepath = headphotopath + friendUid[j] + ".jpg";
-			System.out.println(filepath);
+			
+			Log.e(className,filepath);
 			file = new File(filepath);
 			String type;
 			if (file.exists()) { // jpg
@@ -83,13 +87,14 @@ public class FriendList extends Thread {
 			}
 			System.out.println(filepath);
 			FileInputStream f;
+			
 			try {
-				headphotopath = headphotopath + friendUid[j] + type;
-				System.out.println("search path: " + headphotopath);
-				f = new FileInputStream(headphotopath);
+				String headPhotoName = headphotopath + friendUid[j] + type;
+				System.out.println("search path: " + headPhotoName);
+				f = new FileInputStream(headPhotoName);
 				Bitmap bm = null;
 				BitmapFactory.Options options = new BitmapFactory.Options();
-				// options.inSampleSize = 8;//Í¼Æ¬µÄ³¤¿í¶¼ÊÇÔ­À´µÄ1/8
+				// options.inSampleSize = 8;//å›¾ç‰‡çš„é•¿å®½éƒ½æ˜¯åŸæ¥çš„1/8
 				BufferedInputStream bis = new BufferedInputStream(f);
 				bm = BitmapFactory.decodeStream(bis, null, options);
 				friendHeadphoto[j] = bm;
@@ -107,24 +112,25 @@ public class FriendList extends Thread {
 		Friend.friendheadphotoversion = friendheadphotoversion;
 		Friend.friendsignatureversion = friendsignatureversion;
 		
-		// ¸ü¸ÄÁĞ±íÄÚÈİ
+		// æ›´æ”¹åˆ—è¡¨å†…å®¹
 		this.friendActivity.getMyHandler().sendEmptyMessage(1);
 		
 		c.close();
 		db.close();
 		
-		//Èç¹û´æÔÚºÃÓÑ
+		//å¦‚æœå­˜åœ¨å¥½å‹
 		if(Friend.friendUid.length>0){
-			// »ñÈ¡Êı¾İ£¬¶Ô±ÈÊı¾İ¿âÄÚÈİ½øĞĞ¸ü¸Ä		
+			// è·å–æ•°æ®ï¼Œå¯¹æ¯”æ•°æ®åº“å†…å®¹è¿›è¡Œæ›´æ”¹		
 			FriendData friendData = new FriendData(friendDataPath);
 			friendData.run();
-		}		
-		System.out.println("¸ã¶¨Ë¢ĞÂÄÚÈİ");
+		}				
+		Log.e(className,"æå®šåˆ·æ–°å†…å®¹");
 		Looper.loop();
 	}
 	
-	public void flush(){
-		System.out.println("flush ¿ªÊ¼»ñÈ¡ºÃÓÑÁĞ±íĞÅÏ¢");
+	public void flush(){		
+		Log.e(className,"flush å¼€å§‹è·å–å¥½å‹åˆ—è¡¨ä¿¡æ¯");
+		/*
 		SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(DataBaseInstance.fullPath, null);
 		
 		Cursor c = db.query(tableName, new String[] { "uid", "username", "signature", "status", "headphotoversion",
@@ -159,7 +165,7 @@ public class FriendList extends Thread {
 		
 		File file;
 		for (int j = 0; j < i; j++) {
-			// ÅĞ¶ÏÀàĞÍ£¬¾ÍÁ½ÖÖjpgºÍpng
+			// åˆ¤æ–­ç±»å‹ï¼Œå°±ä¸¤ç§jpgå’Œpng
 			String filepath = headphotopath + friendUid[j] + ".jpg";
 			System.out.println(filepath);
 			file = new File(filepath);
@@ -172,12 +178,12 @@ public class FriendList extends Thread {
 			System.out.println(filepath);
 			FileInputStream f;
 			try {
-				headphotopath = headphotopath + friendUid[j] + type;
-				System.out.println("search path: " + headphotopath);
-				f = new FileInputStream(headphotopath);
+				String headphotoName = headphotopath + friendUid[j] + type;
+				System.out.println("search path: " + headphotoName);
+				f = new FileInputStream(headphotoName);
 				Bitmap bm = null;
 				BitmapFactory.Options options = new BitmapFactory.Options();
-				// options.inSampleSize = 8;//Í¼Æ¬µÄ³¤¿í¶¼ÊÇÔ­À´µÄ1/8
+				// options.inSampleSize = 8;//å›¾ç‰‡çš„é•¿å®½éƒ½æ˜¯åŸæ¥çš„1/8
 				BufferedInputStream bis = new BufferedInputStream(f);
 				bm = BitmapFactory.decodeStream(bis, null, options);
 				friendHeadphoto[j] = bm;
@@ -197,13 +203,13 @@ public class FriendList extends Thread {
 		
 		c.close();
 		db.close();
-		
-		//Èç¹û´æÔÚºÃÓÑ
+		*/
+		//å¦‚æœå­˜åœ¨å¥½å‹
 		if(Friend.friendUid.length>0){
-			// »ñÈ¡Êı¾İ£¬¶Ô±ÈÊı¾İ¿âÄÚÈİ½øĞĞ¸ü¸Ä		
+			// è·å–æ•°æ®ï¼Œå¯¹æ¯”æ•°æ®åº“å†…å®¹è¿›è¡Œæ›´æ”¹		
 			FriendData friendData = new FriendData(friendDataPath);
 			friendData.run();
-		}		
-		System.out.println("flush ¸ã¶¨Ë¢ĞÂÄÚÈİ");
+		}				
+		Log.e(className,"flush æå®šåˆ·æ–°å†…å®¹");
 	}
 }

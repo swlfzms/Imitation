@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 
 public class Encryption {
 	/** 
-     * »ñµÃMD5¼ÓÃÜÃÜÂëµÄ·½·¨ 
+     * è·å¾—MD5åŠ å¯†å¯†ç çš„æ–¹æ³• 
      */  
     private static String getMD5ofStr(String origString) {  
         String origMD5 = null;  
@@ -18,7 +18,7 @@ public class Encryption {
         return origMD5;  
     }  
     /** 
-     * ´¦Àí×Ö½ÚÊı×éµÃµ½MD5ÃÜÂëµÄ·½·¨ 
+     * å¤„ç†å­—èŠ‚æ•°ç»„å¾—åˆ°MD5å¯†ç çš„æ–¹æ³• 
      */  
     private static String byteArray2HexStr(byte[] bs) {  
         StringBuffer sb = new StringBuffer();  
@@ -28,20 +28,20 @@ public class Encryption {
         return sb.toString();  
     }  
     /** 
-     * ×Ö½Ú±ê×¼ÒÆÎ»×ªÊ®Áù½øÖÆ·½·¨ 
+     * å­—èŠ‚æ ‡å‡†ç§»ä½è½¬åå…­è¿›åˆ¶æ–¹æ³• 
      */  
     private static String byte2HexStr(byte b) {  
         String hexStr = null;  
         int n = b;  
         if (n < 0) {  
-            //ÈôĞèÒª×Ô¶¨Òå¼ÓÃÜ,ÇëĞŞ¸ÄÕâ¸öÒÆÎ»Ëã·¨¼´¿É  
+            //è‹¥éœ€è¦è‡ªå®šä¹‰åŠ å¯†,è¯·ä¿®æ”¹è¿™ä¸ªç§»ä½ç®—æ³•å³å¯  
             n = b & 0x7F + 128;  
         }  
         hexStr = Integer.toHexString(n / 16) + Integer.toHexString(n % 16);  
         return hexStr.toUpperCase();  
     }  
     /** 
-     * Ìá¹©Ò»¸öMD5¶à´Î¼ÓÃÜ·½·¨ 
+     * æä¾›ä¸€ä¸ªMD5å¤šæ¬¡åŠ å¯†æ–¹æ³• 
      */  
     public static String getMD5ofStr(String origString, int times) {  
         String md5 = getMD5ofStr(origString);  
@@ -51,14 +51,14 @@ public class Encryption {
         return getMD5ofStr(md5);  
     }  
     /** 
-     * ÃÜÂëÑéÖ¤·½·¨ 
+     * å¯†ç éªŒè¯æ–¹æ³• 
      */  
     private static boolean verifyPassword(String inputStr, String MD5Code) {  
         return getMD5ofStr(inputStr).equals(MD5Code);  
     }  
   
     /** 
-     * ÖØÔØÒ»¸ö¶à´Î¼ÓÃÜÊ±µÄÃÜÂëÑéÖ¤·½·¨ 
+     * é‡è½½ä¸€ä¸ªå¤šæ¬¡åŠ å¯†æ—¶çš„å¯†ç éªŒè¯æ–¹æ³• 
      */  
     private static boolean verifyPassword(String inputStr, String MD5Code, int times) {  
         return getMD5ofStr(inputStr, times).equals(MD5Code);  

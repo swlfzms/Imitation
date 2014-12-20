@@ -53,17 +53,23 @@ public class AddFriendToDatabase extends Thread {
 		String[] friendSignature = new String[length + 1];
 		int[] friendStatus = new int[length + 1];
 		Bitmap[] friendHeadphoto = new Bitmap[length + 1];
+		int[] friendheadphotoversion = new int[length + 1];
+		int[] friendsignatureversion = new int[length + 1];
 		
 		copy(friendUid, Friend.friendUid, length);
 		copy(friendUsername, Friend.friendUsername, length);
 		copy(friendSignature, Friend.friendSignature, length);
 		copy(friendStatus, Friend.friendStatus, length);
 		copy(friendHeadphoto, Friend.friendHeadphoto, length);
+		copy(friendheadphotoversion, Friend.friendheadphotoversion, length);
+		copy(friendsignatureversion, Friend.friendsignatureversion, length);
 		
 		friendUid[length] = id;
 		friendUsername[length] = this.username;
 		friendSignature[length] = signature;
 		friendStatus[length] = status;
+		friendheadphotoversion[length] = 0;
+		friendsignatureversion[length] =0;
 		
 		String type = ".png";
 		String friendHeadPhoto = DataBaseInstance.prePath + Person.username
@@ -84,7 +90,7 @@ public class AddFriendToDatabase extends Thread {
 		try {
 			Bitmap bm = null;
 			BitmapFactory.Options options = new BitmapFactory.Options();
-			// options.inSampleSize = 8;//图片的长宽都是原来的1/8
+			// options.inSampleSize = 8;//鍥剧墖鐨勯暱瀹介兘鏄師鏉ョ殑1/8
 			BufferedInputStream bis;
 			bis = new BufferedInputStream(new FileInputStream(fileFriendHeadPhoto));
 			bm = BitmapFactory.decodeStream(bis, null, options);
@@ -99,6 +105,8 @@ public class AddFriendToDatabase extends Thread {
 		Friend.friendSignature = friendSignature;
 		Friend.friendStatus = friendStatus;
 		Friend.friendHeadphoto = friendHeadphoto;
+		Friend.friendheadphotoversion = friendheadphotoversion;
+		Friend.friendsignatureversion = friendsignatureversion;
 		
 		Friend.addFriend = true;
 		db.close();

@@ -51,9 +51,20 @@
     <string name="database_path">/Imitation/database/</string>    
     <string name="database_name">imitation.db</string>        
     
+    <!-- person -->
+    <string name="person_headPhotoPath">/Imitation/</string>
+    
     <!-- publish beans -->
     <string name="publish_friendDirectory">/FriendListHeadPhoto/</string>
     <string name="publish_selfDirectory">/HeadPhoto/</string>
     <string name="publish_headphotoName">headphoto0</string>
     <string name="publish_FriendList">FriendList</string>
+    
+    <!-- communication server port -->
+    <string name="communication_port">9084</string>
+    <string name="communication_address">http://192.168.204.193:8080/Imitation/communicationIPServlet</string>
+    <string name="communication_voiceSavePath">/Imitation/tmpVoicePath/</string>
+    
+    <!-- chat record directory -->
+    <string name="chat_directory">chattmp/</string>
 </resources>

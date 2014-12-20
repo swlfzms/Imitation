@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 
+import com.example.activity.friendcircle.FriendCircleActivity;
 import com.example.imitation.R;
 
 public class MyClickListener implements OnItemClickListener{
@@ -33,23 +34,24 @@ public class MyClickListener implements OnItemClickListener{
 	public void onItemClick(AdapterView<?> adapter, View view, int position,
 			long arg3) {
 		// TODO Auto-generated method stub
-		switch(position){//¿´¿´±ğÈË
+		switch(position){//çœ‹çœ‹åˆ«äºº
 		case 0:
+            this.publishActivity.startFriendCircleActivity();
 			break;
-		case 1://·¢±íÇ©Ãû
+		case 1://å‘è¡¨ç­¾å
 			final EditText etSignature = new EditText(publishActivity);				
 			//Toast.makeText(PublishActivity.this, "click me", Toast.LENGTH_SHORT).show();
-			new AlertDialog.Builder(publishActivity).setTitle("¸üĞÂ×´Ì¬")
-			.setMessage("ÇëÊäÈëÄãµÄÇ©Ãû").setIcon(R.drawable.p_signature)
+			new AlertDialog.Builder(publishActivity).setTitle("æ›´æ–°çŠ¶æ€")
+			.setMessage("è¯·è¾“å…¥ä½ çš„ç­¾å").setIcon(R.drawable.p_signature)
 			.setView(etSignature)
-			.setPositiveButton("È·¶¨", new OnClickListener() {					
+			.setPositiveButton("ç¡®å®š", new OnClickListener() {					
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					signature = etSignature.getText().toString();
 					MyTask myTask = new MyTask(signature, publishActivity,"signature");
 					myTask.execute();
 				}
-			}).setNegativeButton("È¡Ïû", new OnClickListener() {
+			}).setNegativeButton("å–æ¶ˆ", new OnClickListener() {
 				
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
@@ -57,20 +59,20 @@ public class MyClickListener implements OnItemClickListener{
 				}
 			}).show();
 			break;
-		case 2://²éÕÒºÃÓÑ
+		case 2://æŸ¥æ‰¾å¥½å‹
 			final EditText etFriendName = new EditText(publishActivity);				
 			//Toast.makeText(PublishActivity.this, "click me", Toast.LENGTH_SHORT).show();
-			new AlertDialog.Builder(publishActivity).setTitle("Ëæ±ãÕÒÕÒ")
-			.setMessage("ÇëÊäÈëÒª²éÕÒµÄºÃÓÑÃû×Ö").setIcon(R.drawable.p_signature)
+			new AlertDialog.Builder(publishActivity).setTitle("éšä¾¿æ‰¾æ‰¾")
+			.setMessage("è¯·è¾“å…¥è¦æŸ¥æ‰¾çš„å¥½å‹åå­—").setIcon(R.drawable.p_signature)
 			.setView(etFriendName)
-			.setPositiveButton("È·¶¨", new OnClickListener() {					
+			.setPositiveButton("ç¡®å®š", new OnClickListener() {					
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					friendName = etFriendName.getText().toString();
 					MyTask myTask = new MyTask(friendName, publishActivity,"addfriend");
 					myTask.execute();
 				}
-			}).setNegativeButton("È¡Ïû", new OnClickListener() {
+			}).setNegativeButton("å–æ¶ˆ", new OnClickListener() {
 				
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
@@ -78,16 +80,15 @@ public class MyClickListener implements OnItemClickListener{
 				}
 			}).show();
 			break;
-		case 3://¸ü»»Í·Ïñ
+		case 3://æ›´æ¢å¤´åƒ
 			Intent inte = new Intent();
 			inte.setType("image/*");
-			//Ê¹ÓÃIntent.ACTION_GET_CONTENTÕâ¸öAction 
+			//ä½¿ç”¨Intent.ACTION_GET_CONTENTè¿™ä¸ªAction 
 			inte.setAction(Intent.ACTION_GET_CONTENT);
-			 //È¡µÃÏàÆ¬ºó·µ»Ø±¾»­Ãæ 
+			 //å–å¾—ç›¸ç‰‡åè¿”å›æœ¬ç”»é¢ 
 			publishActivity.startActivityForResult(inte, 1);
 			break;
-		default:				
-			break;
+		default:							
 		}
 	}	
 

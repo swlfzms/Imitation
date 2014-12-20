@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import com.example.activity.friendcircle.FriendCircleActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -47,7 +48,7 @@ public class PublishActivity extends Activity {
 	
 	private int[] image = new int[] { R.drawable.p_look, R.drawable.p_signature, R.drawable.p_search,
 			R.drawable.p_shoot };
-	private String[] info = new String[] { "¿´¿´±ğÈË", "·¢±íÇ©Ãû", "²éÕÒºÃÓÑ", "¸ü»»Í·Ïñ" };
+	private String[] info = new String[] { "çœ‹çœ‹åˆ«äºº", "å‘è¡¨ç­¾å", "æŸ¥æ‰¾å¥½å‹", "æ›´æ¢å¤´åƒ" };
 	private MyClickListener myClickListener;
 	
 	private String signatureUrl;
@@ -68,7 +69,12 @@ public class PublishActivity extends Activity {
 		myClickListener = new MyClickListener(this);
 		list.setOnItemClickListener(myClickListener);
 	}
-	
+
+    public void startFriendCircleActivity(){
+        Intent intent = new Intent();
+        intent.setClass(PublishActivity.this, FriendCircleActivity.class);
+        startActivity(intent);
+    }
 	public String getSignatureUrl() {
 		return signatureUrl;
 	}
@@ -163,7 +169,7 @@ public class PublishActivity extends Activity {
 		return stringBuilder.toString();
 	}
 	
-	// ¸ü»»Í·Ïñ
+	// æ›´æ¢å¤´åƒ
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		
@@ -172,17 +178,17 @@ public class PublishActivity extends Activity {
 			ContentResolver cr = this.getContentResolver();
 			
 			String[] proj = { MediaStore.Images.Media.DATA };
-			// ºÃÏñÊÇandroid¶àÃ½ÌåÊı¾İ¿âµÄ·â×°½Ó¿Ú£¬¾ßÌåµÄ¿´AndroidÎÄµµ
+			// å¥½åƒæ˜¯androidå¤šåª’ä½“æ•°æ®åº“çš„å°è£…æ¥å£ï¼Œå…·ä½“çš„çœ‹Androidæ–‡æ¡£
 			Cursor cursor = managedQuery(uri, proj, null, null, null);
-			// °´ÎÒ¸öÈËÀí½â Õâ¸öÊÇ»ñµÃÓÃ»§Ñ¡ÔñµÄÍ¼Æ¬µÄË÷ÒıÖµ
+			// æŒ‰æˆ‘ä¸ªäººç†è§£ è¿™ä¸ªæ˜¯è·å¾—ç”¨æˆ·é€‰æ‹©çš„å›¾ç‰‡çš„ç´¢å¼•å€¼
 			int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-			// ½«¹â±êÒÆÖÁ¿ªÍ· £¬Õâ¸öºÜÖØÒª£¬²»Ğ¡ĞÄºÜÈİÒ×ÒıÆğÔ½½ç
+			// å°†å…‰æ ‡ç§»è‡³å¼€å¤´ ï¼Œè¿™ä¸ªå¾ˆé‡è¦ï¼Œä¸å°å¿ƒå¾ˆå®¹æ˜“å¼•èµ·è¶Šç•Œ
 			cursor.moveToFirst();
-			// ×îºó¸ù¾İË÷ÒıÖµ»ñÈ¡Í¼Æ¬Â·¾¶
+			// æœ€åæ ¹æ®ç´¢å¼•å€¼è·å–å›¾ç‰‡è·¯å¾„
 			String path = cursor.getString(column_index);
 			try {
-				// ÏÔÊ¾Ñ­»·½ø¶ÈÈ¦
-				progressDialog = ProgressDialog.show(PublishActivity.this, "ÇëÉÔºò", "Í¼Æ¬ÍæÃüÉÏ´«ÖĞ...", true, true);
+				// æ˜¾ç¤ºå¾ªç¯è¿›åº¦åœˆ
+				progressDialog = ProgressDialog.show(PublishActivity.this, "è¯·ç¨å€™", "å›¾ç‰‡ç©å‘½ä¸Šä¼ ä¸­...", true, true);
 				progressDialog.setCanceledOnTouchOutside(false);
 				progressDialog.setCancelable(false);
 				progressDialog.show();
@@ -215,7 +221,7 @@ public class PublishActivity extends Activity {
 				int index = imagePath.lastIndexOf(".");
 				String type = imagePath.substring(index + 1);
 				if (!type.equals("png") && !type.equals("jpg")) {
-					Toast.makeText(PublishActivity.this, "Í¼Æ¬¸ñÊ½Ö»¿ÉÒÔÊÇpngºÍjpg", Toast.LENGTH_LONG).show();
+					Toast.makeText(PublishActivity.this, "å›¾ç‰‡æ ¼å¼åªå¯ä»¥æ˜¯pngå’Œjpg", Toast.LENGTH_LONG).show();
 					return;
 				}
 				
@@ -237,12 +243,12 @@ public class PublishActivity extends Activity {
 				
 				boolean result = receiveObject.getBoolean("result");
 				String message = receiveObject.getString("message");
-				System.out.println("ÊÕµ½µÄĞÅÏ¢:"+message);								
-				// µÃµ½½á¹û£¬È¡Ïû½ø¶ÈÌõ				
-				if (result) { // ³É¹¦²¢ÔÚ±¾µØ¸ü»»Í·Ïñ¡£
+				System.out.println("æ”¶åˆ°çš„ä¿¡æ¯:"+message);								
+				// å¾—åˆ°ç»“æœï¼Œå–æ¶ˆè¿›åº¦æ¡				
+				if (result) { // æˆåŠŸå¹¶åœ¨æœ¬åœ°æ›´æ¢å¤´åƒã€‚
 					String headPhotoSavePath = DataBaseInstance.prePath
 							+ Person.username + Publish.selfDirectory+Publish.headphotoName;
-					// ÒÆ³ıÖ®Ç°µÄÍ¼Æ¬jpgºÍpng
+					// ç§»é™¤ä¹‹å‰çš„å›¾ç‰‡jpgå’Œpng
 					File tmp = new File(headPhotoSavePath + ".jpg");
 					if (tmp.exists()) {
 						tmp.delete();
@@ -253,14 +259,14 @@ public class PublishActivity extends Activity {
 						}
 					}
 					
-					// ±¾µØ±£´æÍ¼Æ¬
+					// æœ¬åœ°ä¿å­˜å›¾ç‰‡
 					tmp = new File(headPhotoSavePath + "." + type);
 					FileOutputStream fileOutputStream = new FileOutputStream(tmp);
 					BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
 					bufferedOutputStream.write(img, 0, img.length);
 					bufferedOutputStream.flush();
 					bufferedOutputStream.close();					
-				} else { // Ê§°Ü
+				} else { // å¤±è´¥
 				}				
 				Toast.makeText(PublishActivity.this, message, Toast.LENGTH_LONG).show();
 			} catch (FileNotFoundException e) {

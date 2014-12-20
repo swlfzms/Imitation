@@ -1,13 +1,15 @@
 package com.example.beans;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 import android.graphics.Bitmap;
 
 public class Friend implements Serializable {
 	
 	/**
-	 * @Fields serialVersionUID : TODO（用一句话描述这个变量表示什么）
+	 * @Fields serialVersionUID : TODO锛堢敤涓�鍙ヨ瘽鎻忚堪杩欎釜鍙橀噺琛ㄧず浠�涔堬級
 	 */
 	
 	private static final long serialVersionUID = -464767809042591618L;
@@ -16,15 +18,17 @@ public class Friend implements Serializable {
 	public static String[] friendSignature;
 	public static int[] friendStatus;
 	public static Bitmap[] friendHeadphoto;
-	
+	public static Bitmap selfHeadPhoto;
 	public static int[] friendheadphotoversion;
 	public static int[] friendsignatureversion;
-	//public static String[] friendIp;
+	public static String[] friendIp;
 	
 	public static String imageDownLoadPath;
 	
 	public static boolean addFriend  = false;
 	public static boolean dataChanged = false;
+	
+	public static Map<String,String> map = new HashMap<String,String>();
 	
 	public Friend(){
 		

@@ -80,9 +80,9 @@ public class RegisterService extends Thread {
 				JSONObject registerResultJsonObject = new JSONObject(content.toString());
 				boolean result = registerResultJsonObject.getBoolean("result");
 				String message = registerResultJsonObject.getString("message");
-				if (result) { // 成功										
+				if (result) { // 鎴愬姛										
 					registerActivity.getMyHandler().sendEmptyMessage(1);
-				} else { // 失败
+				} else { // 澶辫触
 					registerActivity.getMyHandler().sendEmptyMessage(0);
 				}
 				registerActivity.registerMessage = message;
@@ -105,7 +105,7 @@ public class RegisterService extends Thread {
 		Looper.loop();
 	}
 	
-	// 加密方法
+	// 鍔犲瘑鏂规硶
 	public String encrption(String str) {
 		return Encryption.getMD5ofStr(str, 7);
 	}

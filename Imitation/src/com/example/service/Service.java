@@ -33,7 +33,7 @@ public class Service {
 			HttpClient httpClient = new DefaultHttpClient();
 			HttpResponse httpResponse = httpClient.execute(httpPost);
 			state = httpResponse.getStatusLine().getStatusCode();
-			System.out.println("Á¬½Ó×´Ì¬£º "+state);
+			System.out.println("è¿æ¥çŠ¶æ€ï¼š "+state);
 			
 			if (state == 200) {
 				
@@ -45,7 +45,7 @@ public class Service {
 					content.append(tmp);
 				}
 				bufferedReader.close();
-				System.out.println("ÊÕµ½µÄjsonÄÚÈİ£º"+content.toString());
+				System.out.println("æ”¶åˆ°çš„jsonå†…å®¹ï¼š"+content.toString());
 				
 				receiveObject = new JSONObject(content.toString());
 				return receiveObject;

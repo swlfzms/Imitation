@@ -53,31 +53,32 @@ public class LoginActivity extends Activity {
 	
 	public String loginMessage;
 	
+	
 	private boolean result; // login result; true or false;
 	
+	private String className = LoginActivity.class.getName();
 	private Handler myHandler = new Handler() {
 		
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			
-			// µÇÂ¼Ê§°Ü
+			// ç™»å½•å¤±è´¥
 			case 0:
 				Toast.makeText(LoginActivity.this, loginMessage, Toast.LENGTH_LONG).show();
 				progressDialog.cancel();
 				break;
 			
-			// µÇÂ¼³É¹¦
+			// ç™»å½•æˆåŠŸ
 			case 1:
-				Toast.makeText(LoginActivity.this, loginMessage, Toast.LENGTH_SHORT).show();
-				Toast.makeText(LoginActivity.this, "ip address: "+ Person.ip, Toast.LENGTH_LONG).show();
+				//Toast.makeText(LoginActivity.this, loginMessage, Toast.LENGTH_SHORT).show();
+				//Toast.makeText(LoginActivity.this, "ip address: " + Person.ip, Toast.LENGTH_LONG).show();
+				Log.e(className, loginMessage);
 				Intent mainFunctionActivityIntent = new Intent();
 				mainFunctionActivityIntent.setClass(LoginActivity.this, MainFunctionActivity.class);
 				startActivity(mainFunctionActivityIntent);
-				
-				// Çå³ıµ±Ç°µÄµÇÂ¼activity
-				LoginActivity.this.finish();
-				
 				progressDialog.cancel();
+				// æ¸…é™¤å½“å‰çš„ç™»å½•activity
+				LoginActivity.this.finish();								
 				break;
 			}
 		}
@@ -96,7 +97,7 @@ public class LoginActivity extends Activity {
 		return myHandler;
 	}
 	
-	// µÇÂ¼
+	// ç™»å½•
 	private final View.OnClickListener btnLoginListener = new View.OnClickListener() {
 		
 		@Override
@@ -107,23 +108,23 @@ public class LoginActivity extends Activity {
 			final String strPassword = etpassword.getText().toString().trim();
 			
 			if (strUsername == null || strUsername.equals("")) {
-				Toast.makeText(LoginActivity.this, "ÓÃ»§Ãû²»Îª¿Õ", Toast.LENGTH_SHORT).show();
+				Toast.makeText(LoginActivity.this, "ç”¨æˆ·åä¸ä¸ºç©º", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (strPassword == null || strPassword.equals("")) {
-				Toast.makeText(LoginActivity.this, "ÃÜÂë²»Îª¿Õ", Toast.LENGTH_SHORT).show();
+				Toast.makeText(LoginActivity.this, "å¯†ç ä¸ä¸ºç©º", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			
-			Person.ip = getLocalIpAddress();			
+			Person.ip = getIpWithWIFI() == null ? GetIp() : getIpWithWIFI();
 			
-			// ÏÔÊ¾Ñ­»·½ø¶ÈÈ¦
-			progressDialog = ProgressDialog.show(LoginActivity.this, "ÇëÉÔºò", "ÍæÃü¼ÓÔØÖĞ...", true, true);
+			// æ˜¾ç¤ºå¾ªç¯è¿›åº¦åœˆ
+			progressDialog = ProgressDialog.show(LoginActivity.this, "è¯·ç¨å€™", "ç©å‘½åŠ è½½ä¸­...", true, true);
 			progressDialog.setCanceledOnTouchOutside(true);
 			progressDialog.setCancelable(true);
 			progressDialog.show();
 			
-			// ´ıÑéÖ¤µÄµÇÂ¼ĞÅÏ¢
+			// å¾…éªŒè¯çš„ç™»å½•ä¿¡æ¯
 			LoginUser.username = strUsername;
 			LoginUser.password = strPassword;
 			
@@ -131,38 +132,68 @@ public class LoginActivity extends Activity {
 			loginService.start();
 			
 			/*
-			 * if (result) { // µÇÂ½³É¹¦ Toast.makeText(LoginActivity.this, "µÇÂ½³É¹¦", Toast.LENGTH_SHORT).show(); } else { //
-			 * µÇÂ½Ê§°Ü Toast.makeText(LoginActivity.this, "µÇÂ½Ê§°Ü", Toast.LENGTH_SHORT).show(); }
+			 * if (result) { // ç™»é™†æˆåŠŸ Toast.makeText(LoginActivity.this, "ç™»é™†æˆåŠŸ", Toast.LENGTH_SHORT).show(); } else { //
+			 * ç™»é™†å¤±è´¥ Toast.makeText(LoginActivity.this, "ç™»é™†å¤±è´¥", Toast.LENGTH_SHORT).show(); }
 			 */
 		}
 	};
-	public String getLocalIpAddress()  
-    {  
-        try  
-        {  
-            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();)  
-            {  
-               NetworkInterface intf = en.nextElement();  
-               for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();)  
-               {  
-                   InetAddress inetAddress = enumIpAddr.nextElement();  
+	
+	public String getLocalIpAddress() {
+		try {
+			for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+				NetworkInterface intf = en.nextElement();
+				for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+					InetAddress inetAddress = enumIpAddr.nextElement();
+					if (!inetAddress.isLoopbackAddress()) {
+						return inetAddress.getHostAddress().toString();
+					}
+				}
+			}
+		} catch (SocketException ex) {
+			Log.e("WifiPreference IpAddress", ex.toString());
+		}
+		return null;
+	}
+	
+	public String GetIp() {
+		try {
+			for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+				NetworkInterface intf = en.nextElement();
+				for (Enumeration<InetAddress> ipAddr = intf.getInetAddresses(); ipAddr.hasMoreElements();) {
+					InetAddress inetAddress = ipAddr.nextElement();
+					// ipv4åœ°å€
 					if (!inetAddress.isLoopbackAddress()
-							&& InetAddressUtils.isIPv4Address(inetAddress.getHostAddress()))  
-                   {  
-                       return inetAddress.getHostAddress().toString();  
-                   }  
-               }  
-           }  
-        }  
-        catch (SocketException ex)  
-        {  
-            Log.e("WifiPreference IpAddress", ex.toString());  
-        }  
-        return null;  
-    }  
+							&& InetAddressUtils.isIPv4Address(inetAddress.getHostAddress())) {
+						return inetAddress.getHostAddress();
+					}
+				}
+			}
+		} catch (Exception ex) {
+		}
+		return "";
+	}
 	
+	// wifiä¸‹è·å–ip
+	public String getIpWithWIFI() {
+		// è·å–wifiæœåŠ¡
+		WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+		// åˆ¤æ–­wifiæ˜¯å¦å¼€å¯
+		if (wifiManager.isWifiEnabled()) {
+			// wifiManager.setWifiEnabled(true);
+			WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+			int ipAddress = wifiInfo.getIpAddress();
+			String ip = intToIp(ipAddress);
+			return ip;
+		}
+		return null;
+	}
 	
-	// ×¢²á
+	private String intToIp(int i) {
+		
+		return (i & 0xFF) + "." + ((i >> 8) & 0xFF) + "." + ((i >> 16) & 0xFF) + "." + (i >> 24 & 0xFF);
+	}
+	
+	// æ³¨å†Œ
 	private final View.OnClickListener btnRegistListener = new View.OnClickListener() {
 		
 		@Override
@@ -174,7 +205,7 @@ public class LoginActivity extends Activity {
 		}
 	};
 	
-	// ÍË³ö
+	// é€€å‡º
 	private final View.OnClickListener btnExitListener = new View.OnClickListener() {
 		
 		@Override
@@ -185,7 +216,7 @@ public class LoginActivity extends Activity {
 		
 	};
 	
-	// ³õÊ¼»¯
+	// åˆå§‹åŒ–
 	public void initParameter() {
 		btnLogin = (Button) findViewById(R.id.btnLogin);
 		btnRegist = (Button) findViewById(R.id.btnRegist);

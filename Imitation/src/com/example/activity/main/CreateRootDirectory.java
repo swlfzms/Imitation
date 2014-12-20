@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Looper;
 
+import com.example.beans.Communication;
 import com.example.beans.DataBaseInstance;
 
 public class CreateRootDirectory extends Thread {
@@ -22,16 +23,16 @@ public class CreateRootDirectory extends Thread {
 	
 	/***
 	 * 
-	  * databaseInit("´´½¨Êı¾İ¿â")
-	  * TODO(ÕâÀïÃèÊöÕâ¸ö·½·¨ÊÊÓÃÌõ¼ş ¨C ¿ÉÑ¡)
-	  * TODO(ÕâÀïÃèÊöÕâ¸ö·½·¨µÄÖ´ĞĞÁ÷³Ì ¨C ¿ÉÑ¡)
-	  * TODO(ÕâÀïÃèÊöÕâ¸ö·½·¨µÄÊ¹ÓÃ·½·¨ ¨C ¿ÉÑ¡)
-	  * TODO(ÕâÀïÃèÊöÕâ¸ö·½·¨µÄ×¢ÒâÊÂÏî ¨C ¿ÉÑ¡)
+	  * databaseInit("åˆ›å»ºæ•°æ®åº“")
+	  * TODO(è¿™é‡Œæè¿°è¿™ä¸ªæ–¹æ³•é€‚ç”¨æ¡ä»¶ â€“ å¯é€‰)
+	  * TODO(è¿™é‡Œæè¿°è¿™ä¸ªæ–¹æ³•çš„æ‰§è¡Œæµç¨‹ â€“ å¯é€‰)
+	  * TODO(è¿™é‡Œæè¿°è¿™ä¸ªæ–¹æ³•çš„ä½¿ç”¨æ–¹æ³• â€“ å¯é€‰)
+	  * TODO(è¿™é‡Œæè¿°è¿™ä¸ªæ–¹æ³•çš„æ³¨æ„äº‹é¡¹ â€“ å¯é€‰)
 	  *
 	  * @Title: databaseInit
 	  * @Description: TODO
-	  * @param     Éè¶¨ÎÄ¼ş
-	  * @return void    ·µ»ØÀàĞÍ
+	  * @param     è®¾å®šæ–‡ä»¶
+	  * @return void    è¿”å›ç±»å‹
 	  * @throws
 	 */
 	private void databaseInit() {
@@ -45,16 +46,16 @@ public class CreateRootDirectory extends Thread {
 	
 	/***
 	 * 
-	  * directoryIsExist(ÕâÀïÓÃÒ»¾ä»°ÃèÊöÕâ¸ö·½·¨µÄ×÷ÓÃ)
-	  * TODO(ÕâÀïÃèÊöÕâ¸ö·½·¨ÊÊÓÃÌõ¼ş ¨C ¿ÉÑ¡)
-	  * TODO(ÕâÀïÃèÊöÕâ¸ö·½·¨µÄÖ´ĞĞÁ÷³Ì ¨C ¿ÉÑ¡)
-	  * TODO(ÕâÀïÃèÊöÕâ¸ö·½·¨µÄÊ¹ÓÃ·½·¨ ¨C ¿ÉÑ¡)
-	  * TODO(ÕâÀïÃèÊöÕâ¸ö·½·¨µÄ×¢ÒâÊÂÏî ¨C ¿ÉÑ¡)
+	  * directoryIsExist(è¿™é‡Œç”¨ä¸€å¥è¯æè¿°è¿™ä¸ªæ–¹æ³•çš„ä½œç”¨)
+	  * TODO(è¿™é‡Œæè¿°è¿™ä¸ªæ–¹æ³•é€‚ç”¨æ¡ä»¶ â€“ å¯é€‰)
+	  * TODO(è¿™é‡Œæè¿°è¿™ä¸ªæ–¹æ³•çš„æ‰§è¡Œæµç¨‹ â€“ å¯é€‰)
+	  * TODO(è¿™é‡Œæè¿°è¿™ä¸ªæ–¹æ³•çš„ä½¿ç”¨æ–¹æ³• â€“ å¯é€‰)
+	  * TODO(è¿™é‡Œæè¿°è¿™ä¸ªæ–¹æ³•çš„æ³¨æ„äº‹é¡¹ â€“ å¯é€‰)
 	  *
 	  * @Title: directoryIsExist
 	  * @Description: TODO
-	  * @param @return    Éè¶¨ÎÄ¼ş
-	  * @return boolean    ·µ»ØÀàĞÍ
+	  * @param @return    è®¾å®šæ–‡ä»¶
+	  * @return boolean    è¿”å›ç±»å‹
 	  * @throws
 	 */
 	public boolean directoryIsExist() {
@@ -67,22 +68,26 @@ public class CreateRootDirectory extends Thread {
 	
 	/***
 	 * 
-	  * createDirectory(ÕâÀïÓÃÒ»¾ä»°ÃèÊöÕâ¸ö·½·¨µÄ×÷ÓÃ)
-	  * TODO(ÕâÀïÃèÊöÕâ¸ö·½·¨ÊÊÓÃÌõ¼ş ¨C ¿ÉÑ¡)
-	  * TODO(ÕâÀïÃèÊöÕâ¸ö·½·¨µÄÖ´ĞĞÁ÷³Ì ¨C ¿ÉÑ¡)
-	  * TODO(ÕâÀïÃèÊöÕâ¸ö·½·¨µÄÊ¹ÓÃ·½·¨ ¨C ¿ÉÑ¡)
-	  * TODO(ÕâÀïÃèÊöÕâ¸ö·½·¨µÄ×¢ÒâÊÂÏî ¨C ¿ÉÑ¡)
+	  * createDirectory(è¿™é‡Œç”¨ä¸€å¥è¯æè¿°è¿™ä¸ªæ–¹æ³•çš„ä½œç”¨)
+	  * TODO(è¿™é‡Œæè¿°è¿™ä¸ªæ–¹æ³•é€‚ç”¨æ¡ä»¶ â€“ å¯é€‰)
+	  * TODO(è¿™é‡Œæè¿°è¿™ä¸ªæ–¹æ³•çš„æ‰§è¡Œæµç¨‹ â€“ å¯é€‰)
+	  * TODO(è¿™é‡Œæè¿°è¿™ä¸ªæ–¹æ³•çš„ä½¿ç”¨æ–¹æ³• â€“ å¯é€‰)
+	  * TODO(è¿™é‡Œæè¿°è¿™ä¸ªæ–¹æ³•çš„æ³¨æ„äº‹é¡¹ â€“ å¯é€‰)
 	  *
 	  * @Title: createDirectory
 	  * @Description: TODO
-	  * @param     Éè¶¨ÎÄ¼ş
-	  * @return void    ·µ»ØÀàĞÍ
+	  * @param     è®¾å®šæ–‡ä»¶
+	  * @return void    è¿”å›ç±»å‹
 	  * @throws
 	 */
 	public void createDirectory() {
 		File dir = new File(DataBaseInstance.path);
 		if (!dir.exists())
 			dir.mkdirs();
+		dir = new File(Communication.chatDirectory);
+		if(!dir.exists()){
+			dir.mkdirs();
+		}
 	}
 			
 }

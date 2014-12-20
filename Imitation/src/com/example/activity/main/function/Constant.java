@@ -8,7 +8,7 @@ import com.example.activity.visitor.VisitorActivity;
 
 public class Constant {
 
-	public static String mTextviewArray[] = {"ÎÒµÄºÃÓÑ", "×î½ü·Ã¿Í", "¿ìËÙ·¢²¼", "ÎÒµÄÈÕÖ¾"};
+	public static String mTextviewArray[] = {"æˆ‘çš„å¥½å‹", "æœ€è¿‘è®¿å®¢", "å¿«é€Ÿå‘å¸ƒ", "æˆ‘çš„æ—¥å¿—"};
 	
 	public static Class mTabClassArray[]= {FriendActivity.class,
 		VisitorActivity.class,

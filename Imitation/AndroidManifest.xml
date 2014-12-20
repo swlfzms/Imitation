@@ -5,12 +5,21 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="16"
         android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" /> 	
+ 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+ 
+    <!-- audio permission -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- get task -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <!-- Internet permission -->
     <uses-permission android:name="android.permission.INTERNET" />
-    
+
     <!-- WIFI -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" >
     </uses-permission>
@@ -63,10 +72,24 @@
         </activity>
         <activity android:name="com.example.activity.diary.DiaryActivity" >
         </activity>
+        <activity android:name="com.example.activity.friendcircle.FriendCircleActivity">
+        </activity>
+        <activity
+            android:name="com.example.activity.communication.ChatActivity"
+            android:launchMode="singleTask" >
+        </activity>
         <activity
             android:name="com.example.activity.main.function.MainFunctionActivity"
             android:launchMode="singleTask" >
         </activity>
+
+
+        <!-- service -->
+        <service android:name="com.example.activity.main.function.BindService" >
+            <intent-filter>
+                <action android:name="com.example.activity.main.function.BIND_SERVICE" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
