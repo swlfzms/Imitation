@@ -84,12 +84,6 @@
         </activity>
 
 
-        <!-- service -->
-        <service android:name="com.example.activity.main.function.BindService" >
-            <intent-filter>
-                <action android:name="com.example.activity.main.function.BIND_SERVICE" />
-            </intent-filter>
-        </service>
     </application>
 
 </manifest>

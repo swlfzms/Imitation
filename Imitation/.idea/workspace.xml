@@ -20,12 +20,17 @@
     <file path="/ChatActivity.java" changelist="60ca98f0-dd79-4bda-90f0-64b30621c8ed" time="1418571581980" ignored="false" />
     <file path="/strings.xml" changelist="60ca98f0-dd79-4bda-90f0-64b30621c8ed" time="1418571796266" ignored="false" />
     <file path="/MainActivity.java" changelist="60ca98f0-dd79-4bda-90f0-64b30621c8ed" time="1418571873685" ignored="false" />
-    <file path="/MyCircleListView.java" changelist="60ca98f0-dd79-4bda-90f0-64b30621c8ed" time="1418914331540" ignored="false" />
-    <file path="/FriendCircleActivity.java" changelist="60ca98f0-dd79-4bda-90f0-64b30621c8ed" time="1419079950182" ignored="false" />
+    <file path="/MyCircleListView.java" changelist="60ca98f0-dd79-4bda-90f0-64b30621c8ed" time="1419339123186" ignored="false" />
+    <file path="/FriendCircleActivity.java" changelist="60ca98f0-dd79-4bda-90f0-64b30621c8ed" time="1419345463761" ignored="false" />
     <file path="/AndroidManifest.xml" changelist="60ca98f0-dd79-4bda-90f0-64b30621c8ed" time="1419057237224" ignored="false" />
     <file path="/MyClickListener.java" changelist="60ca98f0-dd79-4bda-90f0-64b30621c8ed" time="1419078176655" ignored="false" />
     <file path="/PublishActivity.java" changelist="60ca98f0-dd79-4bda-90f0-64b30621c8ed" time="1419079392890" ignored="false" />
     <file path="/friendcirclemainlist.xml" changelist="60ca98f0-dd79-4bda-90f0-64b30621c8ed" time="1419079939544" ignored="false" />
+    <file path="/Dummy.txt" changelist="60ca98f0-dd79-4bda-90f0-64b30621c8ed" time="1419094466547" ignored="false" />
+    <file path="/styles.xml" changelist="60ca98f0-dd79-4bda-90f0-64b30621c8ed" time="1419094954839" ignored="false" />
+    <file path="/custom_progress_bar.xml" changelist="60ca98f0-dd79-4bda-90f0-64b30621c8ed" time="1419094733091" ignored="false" />
+    <file path="/FriendActivity.java" changelist="60ca98f0-dd79-4bda-90f0-64b30621c8ed" time="1419264972529" ignored="false" />
+    <file path="/listview_footer.xml" changelist="60ca98f0-dd79-4bda-90f0-64b30621c8ed" time="1419345797274" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,82 +91,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MyCircleListView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/activity/friendcircle/MyCircleListView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="29" selection-start="585" selection-end="601" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FriendCircleActivity.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="FriendCircleActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/activity/friendcircle/FriendCircleActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="44" selection-start="1261" selection-end="1261" vertical-scroll-proportion="0.52519894">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="65" selection-start="2788" selection-end="2800" vertical-scroll-proportion="0.0">
+            <state line="47" column="26" selection-start="1347" selection-end="1347" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PublishActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/activity/publish/PublishActivity.java">
+      <file leaf-file-name="MyCircleListView.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/example/activity/friendcircle/MyCircleListView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="58" selection-start="2174" selection-end="2174" vertical-scroll-proportion="-2.5384614">
-              <folding>
-                <element signature="e#1982#2040#0" expanded="true" />
-                <element signature="e#2059#2117#0" expanded="true" />
-                <element signature="e#7147#7209#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyClickListener.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/activity/publish/MyClickListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="17" selection-start="1934" selection-end="1934" vertical-scroll-proportion="0.0">
+            <state line="105" column="61" selection-start="3507" selection-end="3507" vertical-scroll-proportion="0.7507003">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1493#1754#0" expanded="true" />
-                <element signature="e#1748#1749#0" expanded="true" />
-                <element signature="e#1780#1939#0" expanded="true" />
-                <element signature="e#2302#2566#0" expanded="true" />
-                <element signature="e#2560#2561#0" expanded="true" />
-                <element signature="e#2592#2751#0" expanded="true" />
-                <element signature="e#2745#2746#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyListView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/activity/friend/MyListView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="13" selection-start="748" selection-end="748" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FriendActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/activity/friend/FriendActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="90" column="30" selection-start="2613" selection-end="2623" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#1975#2109#0" expanded="true" />
-                <element signature="e#2101#2102#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -177,18 +121,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/example/beans/Communication.java" />
-        <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/com/example/activity/main/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/com/example/activity/communication/SoundMeter.java" />
         <option value="$PROJECT_DIR$/src/com/example/activity/communication/ChatActivity.java" />
         <option value="$PROJECT_DIR$/src/com/example/activity/friendcircle/OnScrollListener.java" />
-        <option value="$PROJECT_DIR$/src/com/example/activity/friendcircle/MyCircleListView.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/com/example/activity/publish/MyClickListener.java" />
         <option value="$PROJECT_DIR$/src/com/example/activity/publish/PublishActivity.java" />
         <option value="$PROJECT_DIR$/res/layout/friendcirclemainlist.xml" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/activity/main/function/MainFunctionActivity.java" />
+        <option value="$PROJECT_DIR$/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/res/drawable/custom_progress_bar.xml" />
+        <option value="$PROJECT_DIR$/res/values/styles.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/activity/friend/FriendActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/example/activity/friendcircle/MyCircleListView.java" />
         <option value="$PROJECT_DIR$/src/com/example/activity/friendcircle/FriendCircleActivity.java" />
+        <option value="$PROJECT_DIR$/res/layout/listview_footer.xml" />
       </list>
     </option>
   </component>
@@ -224,7 +172,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -293,12 +240,51 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="example" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="publish" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Imitation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Imitation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="example" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="friendcircle" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -321,6 +307,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\workspace\Imitation\res\drawable-ldpi" />
       <recent name="C:\Users\Administrator\workspace\Imitation\res\layout" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
@@ -482,42 +469,72 @@
       <workItem from="1418739890098" duration="4614000" />
       <workItem from="1418818373434" duration="6672000" />
       <workItem from="1418908860256" duration="8301000" />
-      <workItem from="1419056339532" duration="6948000" />
+      <workItem from="1419056339532" duration="15911000" />
+      <workItem from="1419129809523" duration="3607000" />
+      <workItem from="1419168706262" duration="167000" />
+      <workItem from="1419260557539" duration="3992000" />
+      <workItem from="1419337144628" duration="7624000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35284000" />
+    <option name="totallyTimeSpent" value="59637000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928678" sideWeight="0.7103918" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32701063" sideWeight="0.6984668" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28960818" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3253833" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23257576" sideWeight="0.7103918" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28960818" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2621212" sideWeight="0.6984668" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30153322" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32898772" sideWeight="0.7022767" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32898772" sideWeight="0.7022767" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22071308" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.77853495" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.6984668" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32898772" sideWeight="0.7022767" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32898772" sideWeight="0.7022767" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32701063" sideWeight="0.6967632" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22071308" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28960818" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3253833" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2621212" sideWeight="0.6984668" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.6984668" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30153322" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -580,94 +597,44 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/example/activity/main/MainActivity.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/java/util/HashMap.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="31" selection-start="2553" selection-end="2580" vertical-scroll-proportion="0.76258993" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/activity/communication/SoundMeter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="63" selection-start="757" selection-end="784" vertical-scroll-proportion="0.5883721" />
+        <state line="27" column="56" selection-start="968" selection-end="968" vertical-scroll-proportion="-0.071794875" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/activity/communication/ChatMsgViewAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="56" selection-start="3178" selection-end="3178" vertical-scroll-proportion="0.47482014" />
+        <state line="83" column="99" selection-start="2182" selection-end="2203" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/beans/Communication.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/activity/main/function/MainFunctionActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="38" selection-start="170" selection-end="183" vertical-scroll-proportion="0.35813954" />
+        <state line="276" column="56" selection-start="8024" selection-end="8024" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/activity/communication/ChatActivity.java">
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="406" column="4" selection-start="12892" selection-end="12892" vertical-scroll-proportion="0.33333334" />
+        <state line="71" column="43" selection-start="3333" selection-end="3333" vertical-scroll-proportion="0.7044146" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/activity_friend.xml">
+    <entry file="file://$PROJECT_DIR$/res/drawable/custom_progress_bar.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="62" selection-start="707" selection-end="733" vertical-scroll-proportion="0.7749511">
+        <state line="16" column="47" selection-start="743" selection-end="743" vertical-scroll-proportion="0.5777351" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="50" selection-start="3032" selection-end="3032" vertical-scroll-proportion="0.6199616" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/friendcirclemainlist.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="45" selection-start="310" selection-end="330" vertical-scroll-proportion="0.30255404">
           <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/activity/main/function/Constant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="57" selection-start="395" selection-end="409" vertical-scroll-proportion="0.50899744">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/activity/main/function/MainFunctionActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="224" column="77" selection-start="6739" selection-end="6739" vertical-scroll-proportion="0.5151515">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="65" selection-start="2788" selection-end="2800" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/activity/friendcircle/MyCircleListView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="29" selection-start="585" selection-end="601" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/activity/publish/PublishActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="58" selection-start="2174" selection-end="2174" vertical-scroll-proportion="-2.5384614">
-          <folding>
-            <element signature="e#1982#2040#0" expanded="true" />
-            <element signature="e#2059#2117#0" expanded="true" />
-            <element signature="e#7147#7209#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/activity/publish/MyClickListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="17" selection-start="1934" selection-end="1934" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1493#1754#0" expanded="true" />
-            <element signature="e#1748#1749#0" expanded="true" />
-            <element signature="e#1780#1939#0" expanded="true" />
-            <element signature="e#2302#2566#0" expanded="true" />
-            <element signature="e#2560#2561#0" expanded="true" />
-            <element signature="e#2592#2751#0" expanded="true" />
-            <element signature="e#2745#2746#0" expanded="true" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/activity/friend/MyListView.java">
@@ -677,19 +644,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/activity/friend/FriendActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/activity/friend/FriendList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="30" selection-start="2613" selection-end="2623" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#1975#2109#0" expanded="true" />
-            <element signature="e#2101#2102#0" expanded="true" />
-          </folding>
+        <state line="20" column="13" selection-start="557" selection-end="557" vertical-scroll-proportion="-6.9579525" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/activity/publish/PublishActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="30" selection-start="2288" selection-end="2288" vertical-scroll-proportion="-7.8427787">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/friendcirclemainlist.xml">
+    <entry file="file://$PROJECT_DIR$/src/com/example/activity/friend/FriendActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="45" selection-start="310" selection-end="330" vertical-scroll-proportion="0.45427728">
+        <state line="95" column="22" selection-start="2828" selection-end="2836" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/activity/communication/ChatActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="457" column="69" selection-start="14789" selection-end="14789" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/activity/friendcircle/FriendCircleActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="26" selection-start="1347" selection-end="1347" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/head.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="47" selection-start="1330" selection-end="1330" vertical-scroll-proportion="0.006024096">
           <folding />
         </state>
       </provider>
@@ -697,9 +687,23 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/activity/friendcircle/FriendCircleActivity.java">
+    <entry file="file://$PROJECT_DIR$/res/layout/listview_footer.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="44" selection-start="1261" selection-end="1261" vertical-scroll-proportion="0.52519894">
+        <state line="39" column="37" selection-start="1345" selection-end="1345" vertical-scroll-proportion="0.7379518">
+          <folding>
+            <element signature="e#547#566#0" expanded="true" />
+            <element signature="e#852#869#0" expanded="true" />
+            <element signature="e#1153#1167#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/activity/friendcircle/MyCircleListView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="105" column="61" selection-start="3507" selection-end="3507" vertical-scroll-proportion="0.7507003">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
