@@ -49,25 +49,6 @@ public class MainFunctionActivity extends TabActivity {
 	private static final int NOTIFICATION_ID = 0x123;
 	
 	private String className = MainFunctionActivity.class.getName();
-	// 保持所启动的Service的IBinder对象
-	BindService.MyBinder binder;
-	// 定义一个ServiceConnection对象
-	private ServiceConnection conn = new ServiceConnection() {
-		// 当该Activity与Service连接成功时回调该方法
-		@Override
-		public void onServiceConnected(ComponentName name, IBinder service) {
-			System.out.println("");
-			Log.e(className, "--Service Connected--");
-			// 获取Service的onBind方法所返回的MyBinder对象
-			binder = (BindService.MyBinder) service;
-		}
-		
-		// 当该Activity与Service断开连接时回调该方法
-		@Override
-		public void onServiceDisconnected(ComponentName name) {
-			Log.e(className, "--Service Disconnected--");
-		}
-	};
 	
 	class WriteChatRecord implements Runnable {
 		
@@ -146,7 +127,6 @@ public class MainFunctionActivity extends TabActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mainfunction);
 		init();
-		// serviceInit();
 		
 		// 获取系统的NotificationManager服务
 		nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -195,14 +175,7 @@ public class MainFunctionActivity extends TabActivity {
 		// 发送通知
 		nm.notify(NOTIFICATION_ID, notify);
 	}
-	
-	public void serviceInit() {
-		final Intent intent = new Intent();
-		// 为Intent设置Action属性
-		intent.setAction("com.example.activity.main.function.BIND_SERVICE");
-		// 绑定指定Serivce
-		bindService(intent, conn, Service.BIND_AUTO_CREATE);
-	}
+
 	
 	private void init() {
 		m_tabHost = getTabHost();
@@ -280,12 +253,6 @@ public class MainFunctionActivity extends TabActivity {
 		String shortClassName = info.topActivity.getShortClassName(); // 类名
 		return shortClassName;
 		// return getCurrentActivityName();
-	}
-	
-	@Override
-	protected void onStop() {
-		// TODO Auto-generated method stub
-		super.onStop();
 	}
 	
 	@Override

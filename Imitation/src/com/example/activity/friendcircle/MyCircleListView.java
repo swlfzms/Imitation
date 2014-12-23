@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.*;
-import com.example.activity.friend.MyListView;
 import com.example.imitation.R;
 
 import java.text.SimpleDateFormat;
@@ -22,7 +21,7 @@ import java.util.Date;
  */
 public class MyCircleListView extends ListView implements AbsListView.OnScrollListener {
 
-    private static final String className = MyCircleListView.className.toString();
+    private static final String className = MyCircleListView.class.getName();
 
     private final static int RELEASE = 0;
     private final static int PULL = 1;
@@ -34,6 +33,7 @@ public class MyCircleListView extends ListView implements AbsListView.OnScrollLi
 
     private LayoutInflater inflater;
     private LinearLayout headView;
+    private View footer;
 
     private TextView tvTipsTextView;
     private TextView tvLastUpdatedTextView;
@@ -43,28 +43,43 @@ public class MyCircleListView extends ListView implements AbsListView.OnScrollLi
     private RotateAnimation animation;
     private RotateAnimation reverseAnimation;
 
+    private boolean isLoadFull;
+    private boolean isLoading;
+    private boolean loadEnable = true;
     private boolean isRecord;
     private int startY;
     private int firstItemIndex;
     private int state;
     private boolean isBack;
 
+    private int pageSize = 3;
+
     private int headContentWidth;
     private int headContentHeight;
 
     private OnRefreshListener refreshListener;
     private boolean isRefreshable;
+    private TextView loadFull;
+    private TextView noData;
+    private TextView more;
+    private ProgressBar loading;
+    private int scrollState;
+
+    private OnLoadListener onLoadListener;
 
     public MyCircleListView(Context context) {
         super(context);
+        initial(context);
     }
 
     public MyCircleListView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
+        initial(context);
     }
 
     public MyCircleListView(Context context, AttributeSet attributeSet, int defStyle) {
         super(context, attributeSet, defStyle);
+        initial(context);
     }
 
     private void initial(Context context) {
@@ -77,7 +92,14 @@ public class MyCircleListView extends ListView implements AbsListView.OnScrollLi
         tvTipsTextView = (TextView) headView.findViewById(R.id.head_tipsTextView);
         tvLastUpdatedTextView = (TextView) headView.findViewById(R.id.head_lastUpdatedTextView);
 
+        footer = (View) inflater.inflate(R.layout.listview_footer, null);
+        loadFull = (TextView) footer.findViewById(R.id.loadFull);
+        noData = (TextView) footer.findViewById(R.id.noData);
+        more = (TextView) footer.findViewById(R.id.more);
+        loading = (ProgressBar) footer.findViewById(R.id.loading);
+
         measureView(headView);
+        measureView(footer);
         headContentHeight = headView.getMeasuredHeight();
         headContentWidth = headView.getMeasuredWidth();
 
@@ -85,6 +107,7 @@ public class MyCircleListView extends ListView implements AbsListView.OnScrollLi
         headView.invalidate();
 
         addHeaderView(headView, null, false);
+        addFooterView(footer);
         setOnScrollListener(this);
 
         animation = new RotateAnimation(0, -180, RotateAnimation.RELATIVE_TO_SELF,
@@ -123,13 +146,38 @@ public class MyCircleListView extends ListView implements AbsListView.OnScrollLi
     }
 
     @Override
-    public void onScrollStateChanged(AbsListView absListView, int i) {
-
+    public void onScrollStateChanged(AbsListView absListView, int scrollState) {
+        this.scrollState = scrollState;
+        ifNeedLoad(absListView, scrollState);
     }
 
     @Override
     public void onScroll(AbsListView absListView, int firstVisibleItem, int i2, int i3) {
         this.firstItemIndex = firstVisibleItem;
+    }
+
+    private void ifNeedLoad(AbsListView view, int scrollState) {
+        if (!loadEnable) {
+            return;
+        }
+        try {
+            if (scrollState == OnScrollListener.SCROLL_STATE_IDLE
+                    && !isLoading
+                    && view.getLastVisiblePosition() == view
+                    .getPositionForView(footer)
+                    && !isLoadFull) {
+                load();
+                isLoading = true;
+            }
+        } catch (Exception e) {
+
+        }
+    }
+
+    private void load() {
+        if(onLoadListener != null){
+            onLoadListener.load();
+        }
     }
 
     @Override
@@ -223,7 +271,7 @@ public class MyCircleListView extends ListView implements AbsListView.OnScrollLi
     }
 
     private void onRefresh() {
-        if(refreshListener != null){
+        if (refreshListener != null) {
             refreshListener.onRefresh();
         }
     }
@@ -266,7 +314,7 @@ public class MyCircleListView extends ListView implements AbsListView.OnScrollLi
                 tvTipsTextView.setText("正在刷新...");
                 tvLastUpdatedTextView.setVisibility(View.VISIBLE);
 
-                Log.v(className,"当前状态，正在刷新");
+                Log.v(className, "当前状态，正在刷新");
                 break;
             case DONE:
                 headView.setPadding(0, -1 * headContentHeight, 0, 0);
@@ -279,24 +327,62 @@ public class MyCircleListView extends ListView implements AbsListView.OnScrollLi
                 break;
         }
     }
-    public void setOnRefreshListener(OnRefreshListener refreshListener){
+
+    public void setOnRefreshListener(OnRefreshListener refreshListener) {
         this.refreshListener = refreshListener;
         isRefreshable = true;
     }
-    public interface OnRefreshListener{
+
+    public void setOnLoadListener(OnLoadListener loadListener){
+        this.onLoadListener = loadListener;
+        this.loadEnable = true;
+    }
+
+    public interface OnRefreshListener {
         public void onRefresh();
     }
-    public void onRefreshComplete(){
+
+    public interface  OnLoadListener{
+        public void load();
+    }
+    public void onRefreshComplete() {
         state = DONE;
         SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
         String date = format.format(new Date());
-        tvLastUpdatedTextView.setText("最近更新: "+date);
+        tvLastUpdatedTextView.setText("最近更新: " + date);
         changeHeaderViewByState();
     }
-    public void setAdapter(BaseAdapter adapter){
+    public void onLoadComplete(){
+        isLoading = false;
+    }
+
+    public void setResultSize(int resultSize) {
+        if (resultSize == 0) {
+            isLoadFull = true;
+            loadFull.setVisibility(View.GONE);
+            loading.setVisibility(View.GONE);
+            more.setVisibility(View.GONE);
+            noData.setVisibility(View.VISIBLE);
+        } else if (resultSize > 0 && resultSize < pageSize) {
+            isLoadFull = true;
+            loadFull.setVisibility(View.VISIBLE);
+            loading.setVisibility(View.GONE);
+            more.setVisibility(View.GONE);
+            noData.setVisibility(View.GONE);
+        } else if (resultSize == pageSize) {
+            isLoadFull = false;
+            loadFull.setVisibility(View.GONE);
+            loading.setVisibility(View.VISIBLE);
+            more.setVisibility(View.VISIBLE);
+            noData.setVisibility(View.GONE);
+        }
+
+    }
+
+    public void setAdapter(BaseAdapter adapter) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日  HH:mm");
         String date = format.format(new Date());
-        tvLastUpdatedTextView.setText("最近更新: "+date);
+        tvLastUpdatedTextView.setText("最近更新: " + date);
         super.setAdapter(adapter);
     }
 }

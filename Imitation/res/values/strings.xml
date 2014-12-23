@@ -67,4 +67,7 @@
     
     <!-- chat record directory -->
     <string name="chat_directory">chattmp/</string>
+    <string name="more">加载中</string>
+    <string name="no_data">暂无数据</string>
+    <string name="load_full">已加载全部</string>
 </resources>
